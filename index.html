@@ -1,196 +1,736 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GABINA DE LA SIERRA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabina de la Sierra - Café Hecho a Leña</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS GENERALES Y PALETA DE COLORES --- */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-dark-accent: #121212;
+            --gold: #b39258;
+            --gold-dim: #8e7343;
+            --beige: #dccbb5;
+            --text-light: #f5f0e6;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #0f0f0f;
-      color: #fff;
-    }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
 
-    /* NAV */
-    header {
-      position: absolute;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 60px;
-      z-index: 10;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
 
-    header nav a {
-      color: #fff;
-      margin: 0 12px;
-      text-decoration: none;
-      font-size: 14px;
-    }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    header nav a:hover {
-      color: #c8a35f;
-    }
+        /* --- COMPONENTES REUTILIZABLES --- */
+        .btn-gold {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
+            font-family: var(--font-serif);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      background: url("https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      padding: 60px;
-    }
+        .btn-gold:hover {
+            background-color: var(--gold);
+            color: var(--bg-dark);
+        }
 
-    .hero-content {
-      max-width: 600px;
-      background: rgba(0,0,0,0.5);
-      padding: 30px;
-      border-radius: 10px;
-    }
+        /* --- 1. NAVBAR --- */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
 
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-    .hero p {
-      margin: 10px 0;
-      line-height: 1.5;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+        }
 
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #c8a35f;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-    }
+        .nav-links a {
+            font-family: var(--font-serif);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    /* SECCIONES */
-    .section {
-      padding: 60px;
-      text-align: center;
-    }
+        .nav-links a:hover, .nav-links .active {
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
+        .cart-icon {
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-    .card {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-    }
+        /* --- 2. HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 650px;
+            /* REEMPLAZAR con tu imagen de fondo (Cascada y cafetera) */
+            background: linear-gradient(to right, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+        }
 
-    .card h3 {
-      color: #c8a35f;
-      margin-bottom: 10px;
-    }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 50px;
+        }
 
-    /* FOOTER */
-    footer {
-      background: #000;
-      padding: 40px;
-      text-align: center;
-      margin-top: 40px;
-      color: #aaa;
-    }
-  </style>
+        .hero-brand {
+            max-width: 450px;
+        }
+
+        .main-logo {
+            width: 150px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5));
+        }
+
+        .hero-brand h1 {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            color: var(--gold);
+            line-height: 1.1;
+            letter-spacing: 3px;
+        }
+
+        .hero-brand .sub-brand {
+            font-family: var(--font-serif);
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+        }
+
+        .hero-brand .tagline {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .hero-statement {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            line-height: 1.4;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3. CARACTERÍSTICAS (CINTA BEIGE) --- */
+        .features-bar {
+            background-color: var(--beige);
+            color: #332615;
+            padding: 40px 20px;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 28px;
+            color: #5a4528;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h3 {
+            font-family: var(--font-serif);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            font-size: 11px;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        /* --- 4. SECCIÓN MARÍA GABINA Y ORIGEN --- */
+        .story-origin {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: #f1ebd9; /* Tono pergamino claro del diseño */
+            color: #222;
+        }
+
+        /* Bloque Izquierdo: María Gabina */
+        .story-block {
+            background-color: #0d0d0d;
+            color: var(--text-light);
+            display: flex;
+            padding: 60px;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .story-img {
+            flex: 1;
+            border: 1px solid var(--gold);
+            padding: 5px;
+        }
+
+        .story-text {
+            flex: 1.2;
+        }
+
+        .story-text h2 {
+            font-family: var(--font-serif);
+            color: var(--gold);
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .story-text .subtitle {
+            font-family: var(--font-serif);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--beige);
+            margin-bottom: 25px;
+        }
+
+        .story-text p {
+            font-size: 11px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #ccc;
+            text-align: justify;
+        }
+
+        /* Bloque Derecho: Origen e Infraestructura */
+        .origin-block {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .origin-header h2 {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            letter-spacing: 2px;
+            color: #332615;
+        }
+
+        .origin-header .subtitle {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #776142;
+            margin-bottom: 20px;
+        }
+
+        .map-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .map-graphic {
+            flex: 1;
+            border-radius: 50%;
+            border: 1px solid #776142;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400') center/cover; /* Reemplazar con recorte del mapa */
+        }
+
+        .map-main {
+            flex: 1.5;
+            /* Reemplazar con la imagen completa del mapa de Veracruz */
+            background: url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=600') center/cover;
+            height: 200px;
+            border: 1px solid #776142;
+        }
+
+        .how-to-get {
+            border-top: 1px solid rgba(119, 97, 66, 0.3);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .how-to-get h4 {
+            font-family: var(--font-serif);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .how-to-get p {
+            font-size: 11px;
+            max-width: 250px;
+        }
+
+        .route-info {
+            text-align: right;
+            font-size: 11px;
+        }
+
+        .route-info div {
+            margin-bottom: 10px;
+        }
+
+        .btn-dark-outline {
+            border: 1px solid #332615;
+            color: #332615;
+            padding: 8px 15px;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-family: var(--font-serif);
+            letter-spacing: 1px;
+        }
+
+        /* --- 5. GRILLA DE CATEGORÍAS (BLOQUES INFERIORES) --- */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            background-color: var(--bg-dark);
+        }
+
+        .category-card {
+            position: relative;
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px 20px;
+            border-right: 1px solid rgba(179, 146, 88, 0.15);
+            overflow: hidden;
+        }
+
+        .category-card:last-child {
+            border-right: none;
+        }
+
+        /* Fondos individuales para simular el diseño */
+        .cat-1 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=500') center/cover; }
+        .cat-2 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500') center/cover; }
+        .cat-3 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500') center/cover; }
+        .cat-4 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500') center/cover; }
+        .cat-5 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), #121212; } /* Simula la tienda del diseño */
+
+        .cat-logo {
+            width: 50px;
+            margin: 0 auto 20px auto;
+        }
+
+        .product-img-shop {
+            width: 100px;
+            margin: 0 auto 15px auto;
+        }
+
+        .category-card h3 {
+            font-family: var(--font-serif);
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .category-card .cat-subtitle {
+            font-size: 10px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            font-size: 11px;
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .category-card .btn-gold {
+            align-self: flex-start;
+            padding: 6px 12px;
+            font-size: 9px;
+        }
+
+        /* --- 6. FOOTER --- */
+        footer {
+            background-color: #050505;
+            border-top: 1px solid rgba(179, 146, 88, 0.2);
+            padding: 60px 20px 20px 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-serif);
+            color: var(--gold);
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand p {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 10px 0 20px 0;
+        }
+
+        .social-icons a {
+            font-size: 18px;
+            margin-right: 15px;
+            color: var(--text-light);
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+
+        .footer-links h4, .footer-contact h4, .footer-subscribe h4 {
+            font-family: var(--font-serif);
+            color: var(--text-light);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            font-size: 11px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-contact p {
+            font-size: 11px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-subscribe p {
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 5px;
+        }
+
+        .subscribe-form input {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            font-size: 11px;
+            width: 100%;
+            outline: none;
+        }
+
+        .subscribe-form button {
+            background: transparent;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid #111;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVO (MOBILE AUTOMÁTICO) --- */
+        @media (max-width: 992px) {
+            .features-container, .categories-grid, .footer-container {
+                grid-template-columns: 1fr;
+            }
+            .story-origin {
+                grid-template-columns: 1fr;
+            }
+            .story-block {
+                flex-direction: column;
+            }
+            .hero-statement {
+                font-size: 18px;
+            }
+            .nav-links {
+                display: none; /* Se simplifica en móviles */
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <header>
-    <div><strong>GABINA</strong></div>
-    <nav>
-      <a href="#">Inicio</a>
-      <a href="#historia">Historia</a>
-      <a href="#cafe">Café</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+    <header>
+        <nav class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#">María Gabina</a></li>
+                <li><a href="#">La Sierra</a></li>
+                <li><a href="#">Leyendas</a></li>
+                <li><a href="#">Nuestro Café</a></li>
+                <li><a href="#">El Logo</a></li>
+                <li><a href="#">Tienda</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li class="cart-icon"><a href="#"><i class="fa-solid fa-bag-shopping"></i> 0</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Café de la Sierra</h1>
-      <p>
-        Un café cultivado en las montañas, con historia, tradición y el sabor de la tierra.
-      </p>
-      <a class="btn" href="#historia">Conoce más</a>
-    </div>
-  </section>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-brand">
+                <img src="https://via.placeholder.com/150x150/000000/b39258?text=LOGO" alt="Gabina Logo" class="main-logo">
+                <div class="sub-brand">GABINA</div>
+                <div class="sub-brand" style="color:var(--gold); font-size:16px;">• DE LA SIERRA •</div>
+                <div class="tagline">Hecho a leña, contado en susurros<br>Citlaltepetl, Veracruz, México</div>
+                
+                <div class="hero-statement">
+                    Café que nace de la tierra, de la historia y de una mujer que nunca dejó de soñar.
+                </div>
+                
+                <button class="btn-gold">Conoce nuestra historia</button>
+            </div>
+        </div>
+    </section>
 
-  <!-- HISTORIA -->
-  <section class="section" id="historia">
-    <h2>Historia</h2>
-    <p>Un proyecto nacido en Veracruz, México, donde el café es tradición familiar.</p>
+    <section class="features-bar">
+        <div class="features-container">
+            <div class="feature-item">
+                <i class="fa-solid fa-mountain-sun"></i>
+                <h3>De La Sierra</h3>
+                <p>Café cultivado en las faldas del Citlaltépetl, Veracruz.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-seedling"></i>
+                <h3>100% Arábica</h3>
+                <p>Granos seleccionados con cuidado y dedicación.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-fire"></i>
+                <h3>Tostado a Leña</h3>
+                <p>El sabor de lo tradicional, como debe ser.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-heart"></i>
+                <h3>Hecho con Respeto</h3>
+                <p>Por la tierra, por la gente y por nuestra historia.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-compass"></i>
+                <h3>Con Válvula</h3>
+                <p>Frescura que se conserva, aroma que permanece.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Origen</h3>
-        <p>Cultivado en la Sierra con cuidado artesanal.</p>
-      </div>
+    <section class="story-origin">
+        <div class="story-block">
+            <div class="story-img">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=400" alt="María Gabina Familia">
+            </div>
+            <div class="story-text">
+                <h2>María Gabina</h2>
+                <div class="subtitle">Una vida entre cafetales, tradición y amor</div>
+                <p>Nació y creció entre las montañas de Citlaltépetl, Veracruz, donde el café forma parte de la vida cotidiana y las historias se transmiten de generación en generación.</p>
+                <p>Durante años cultivó, recolectó, tostó y molió café siguiendo las costumbres aprendidas de sus mayores.</p>
+                <p>Gabina de la Sierra nace como un homenaje en vida a esa mujer trabajadora, cuya dedicación permitió preservar no solo una forma de preparar café, sino también una parte de la historia de su comunidad.</p>
+                <button class="btn-gold" style="margin-top: 15px;">Conoce su historia completa</button>
+            </div>
+        </div>
 
-      <div class="card">
-        <h3>Proceso</h3>
-        <p>Seleccionado, tostado y molido con dedicación.</p>
-      </div>
+        <div class="origin-block">
+            <div class="origin-header">
+                <h2>Nuestro Origen</h2>
+                <div class="subtitle">Citlaltépetl, Veracruz</div>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-graphic"></div>
+                <div class="map-main"></div>
+            </div>
 
-      <div class="card">
-        <h3>Calidad</h3>
-        <p>100% café arábica de altura.</p>
-      </div>
-    </div>
-  </section>
+            <div class="how-to-get">
+                <div>
+                    <h4>¿Cómo llegar?</h4>
+                    <p>Desde Naranjos, toma la carretera hacia Citlaltépetl (Carr. Federal 180) y continúa rumbo a la comunidad.</p>
+                </div>
+                <div class="route-info">
+                    <div><i class="fa-solid fa-car"></i> Tiempo aproximado:<br><strong>35 - 40 min</strong></div>
+                    <button class="btn-dark-outline">Ver ruta en mapa</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- CAFÉ -->
-  <section class="section" id="cafe">
-    <h2>Nuestro Café</h2>
-    <p>Descubre el sabor único de la sierra.</p>
+    <section class="categories-grid">
+        <div class="category-card cat-1">
+            <h3>La Sierra de Otontepec</h3>
+            <div class="cat-subtitle">Montañas, niebla y naturaleza que dan vida a nuestro café.</div>
+            <button class="btn-gold">Ver más</button>
+        </div>
+        <div class="category-card cat-2">
+            <h3>Leyendas de la Sierra</h3>
+            <div class="cat-subtitle">Sirenas, tepas y susurros que habitan entre la niebla.</div>
+            <button class="btn-gold">Ver más</button>
+        </div>
+        <div class="category-card cat-3">
+            <h3>Nuestro Café</h3>
+            <div class="cat-subtitle">Del campo a tu taza. Conoce nuestro proceso, tueste y perfil de sabor.</div>
+            <button class="btn-gold">Ver más</button>
+        </div>
+        <div class="category-card cat-4">
+            <h3>El Significado del Logo</h3>
+            <div class="cat-subtitle">Cada elemento cuenta una historia.</div>
+            <button class="btn-gold">Ver más</button>
+        </div>
+        <div class="category-card cat-5" style="text-align: center; justify-content: center;">
+            <img src="https://via.placeholder.com/100x150/000000/b39258?text=Café+Pack" alt="Empaque Gabina" class="product-img-shop">
+            <h3 style="font-size: 16px;">Tienda</h3>
+            <div class="cat-subtitle" style="color: #fff; margin-bottom: 15px;">Lleva a casa el café que nació entre niebla, montañas y leyendas.</div>
+            <button class="btn-gold" style="align-self: center;">Comprar ahora</button>
+        </div>
+    </section>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Molido</h3>
-        <p>Perfecto para cafetera tradicional.</p>
-      </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>GABINA DE LA SIERRA</h3>
+                <p>Hecho a leña,<br>contado en susurros</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#">María Gabina</a></li>
+                    <li><a href="#">La Sierra</a></li>
+                    <li><a href="#">Leyendas</a></li>
+                    <li><a href="#">Nuestro Café</a></li>
+                    <li><a href="#">El Logo</a></li>
+                    <li><a href="#">Tienda</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
 
-      <div class="card">
-        <h3>Grano</h3>
-        <p>Para quienes prefieren molerlo en casa.</p>
-      </div>
+            <div class="footer-contact">
+                <h4>Contacto</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Citlaltépetl, Naranjos<br>Veracruz, México</p>
+                <p><i class="fa-solid fa-phone"></i> +52 272 123 4567</p>
+                <p><i class="fa-solid fa-envelope"></i> hola@gabinadelasierra.mx</p>
+            </div>
 
-      <div class="card">
-        <h3>Tostado</h3>
-        <p>Perfil suave con aroma intenso.</p>
-      </div>
-    </div>
-  </section>
+            <div class="footer-subscribe">
+                <h4>Suscríbete</h4>
+                <p>Recibe historias, novedades y café directo de la Sierra.</p>
+                <form class="subscribe-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Tu correo electrónico">
+                    <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
 
-  <!-- CONTACTO -->
-  <section class="section" id="contacto">
-    <h2>Contacto</h2>
-    <p>Escríbenos para pedidos o información.</p>
-    <a class="btn" href="mailto:contacto@cafe.com">Enviar correo</a>
-  </section>
-
-  <footer>
-    © 2026 Café de la Sierra - Hecho para GitHub Pages
-  </footer>
+        <div class="footer-bottom">
+            <div>© 2026 Gabina de la Sierra. Todos los derechos reservados.</div>
+            <div>Hecho con respeto. Hecho en Veracruz. <i class="fa-solid fa-heart" style="color: var(--gold);"></i></div>
+        </div>
+    </footer>
 
 </body>
 </html>
