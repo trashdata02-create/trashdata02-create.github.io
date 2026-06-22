@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS GENERALES Y PALETA DE COLORES --- */
+        /* --- VARIABLES Y RESET --- */
         :root {
             --bg-dark: #0a0a0a;
             --bg-dark-accent: #121212;
@@ -20,13 +20,12 @@
             --text-light: #f5f0e6;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-dark);
@@ -34,22 +33,13 @@
             font-family: var(--font-sans);
             font-size: 14px;
             line-height: 1.6;
-            letter-spacing: 0.5px;
+            overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+        a { color: inherit; text-decoration: none; transition: var(--transition); }
+        img { max-width: 100%; height: auto; display: block; }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* --- COMPONENTES REUTILIZABLES --- */
+        /* --- UTILIDADES Y BOTONES --- */
         .btn-gold {
             display: inline-block;
             border: 1px solid var(--gold);
@@ -61,22 +51,41 @@
             letter-spacing: 2px;
             background: transparent;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .btn-gold:hover {
             background-color: var(--gold);
             color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(179, 146, 88, 0.2);
         }
 
-        /* --- 1. NAVBAR --- */
+        /* Animaciones Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 1. NAVBAR INTELIGENTE --- */
         header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(179, 146, 88, 0.2);
+            padding: 5px 0;
         }
 
         .nav-container {
@@ -86,492 +95,174 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            transition: var(--transition);
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            gap: 25px;
-        }
-
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
         .nav-links a {
             font-family: var(--font-serif);
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
         }
 
-        .nav-links a:hover, .nav-links .active {
-            color: var(--gold);
-            border-bottom: 1px solid var(--gold);
+        /* Efecto subrayado dorado en enlaces */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 1px;
+            bottom: -3px; left: 0;
+            background-color: var(--gold);
+            transition: var(--transition);
         }
-
-        .cart-icon {
-            margin-left: 15px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
         /* --- 2. HERO SECTION --- */
         .hero {
             position: relative;
             height: 100vh;
             min-height: 650px;
-            /* REEMPLAZAR con tu imagen de fondo (Cascada y cafetera) */
             background: linear-gradient(to right, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1920') no-repeat center center/cover;
             display: flex;
             align-items: center;
+            padding-top: 80px;
         }
 
         .hero-content {
             max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            padding: 0 50px;
+            margin: 0 auto; width: 100%; padding: 0 50px;
         }
 
-        .hero-brand {
-            max-width: 450px;
-        }
+        .hero-brand { max-width: 450px; }
+        .main-logo { width: 150px; margin-bottom: 20px; filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5)); }
+        
+        .hero-brand h1 { font-family: var(--font-serif); font-size: 36px; color: var(--gold); line-height: 1.1; letter-spacing: 3px; }
+        .hero-brand .sub-brand { font-family: var(--font-serif); font-size: 14px; letter-spacing: 4px; margin-bottom: 5px; }
+        .hero-brand .tagline { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 30px; }
+        .hero-statement { font-family: var(--font-serif); font-size: 24px; line-height: 1.4; letter-spacing: 2px; margin-bottom: 35px; text-transform: uppercase; }
 
-        .main-logo {
-            width: 150px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5));
-        }
+        /* --- 3. CARACTERÍSTICAS --- */
+        .features-bar { background-color: var(--beige); color: #332615; padding: 40px 20px; }
+        .features-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; text-align: center; }
+        .feature-item i { font-size: 28px; color: #5a4528; margin-bottom: 12px; transition: transform 0.3s; }
+        .feature-item:hover i { transform: scale(1.1); }
+        .feature-item h3 { font-family: var(--font-serif); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .feature-item p { font-size: 11px; opacity: 0.9; }
 
-        .hero-brand h1 {
-            font-family: var(--font-serif);
-            font-size: 36px;
-            color: var(--gold);
-            line-height: 1.1;
-            letter-spacing: 3px;
-        }
+        /* --- 4. MARÍA GABINA Y ORIGEN --- */
+        .story-origin { display: grid; grid-template-columns: 1fr 1fr; background-color: #f1ebd9; color: #222; }
+        
+        .story-block { background-color: #0d0d0d; color: var(--text-light); display: flex; padding: 60px; gap: 40px; align-items: center; }
+        .story-img { flex: 1; border: 1px solid var(--gold); padding: 5px; overflow: hidden; }
+        .story-img img { transition: transform 0.5s; }
+        .story-block:hover .story-img img { transform: scale(1.05); }
+        
+        .story-text { flex: 1.2; }
+        .story-text h2 { font-family: var(--font-serif); color: var(--gold); font-size: 28px; letter-spacing: 2px; }
+        .story-text .subtitle { font-family: var(--font-serif); font-size: 12px; text-transform: uppercase; color: var(--beige); margin-bottom: 25px; }
+        .story-text p { font-size: 11px; margin-bottom: 15px; color: #ccc; text-align: justify; }
 
-        .hero-brand .sub-brand {
-            font-family: var(--font-serif);
-            font-size: 14px;
-            letter-spacing: 4px;
-            margin-bottom: 5px;
-        }
+        .origin-block { padding: 60px; display: flex; flex-direction: column; justify-content: space-between; }
+        .origin-header h2 { font-family: var(--font-serif); font-size: 22px; color: #332615; }
+        .origin-header .subtitle { font-size: 11px; text-transform: uppercase; color: #776142; margin-bottom: 20px; }
+        
+        .map-container { display: flex; gap: 20px; align-items: center; margin: 20px 0; }
+        .map-graphic { flex: 1; border-radius: 50%; border: 1px solid #776142; aspect-ratio: 1; background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400') center/cover; }
+        .map-main { flex: 1.5; background: url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=600') center/cover; height: 200px; border: 1px solid #776142; transition: filter 0.3s; cursor: pointer; }
+        .map-main:hover { filter: brightness(0.8); }
 
-        .hero-brand .tagline {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888;
-            margin-bottom: 30px;
-        }
+        .how-to-get { border-top: 1px solid rgba(119, 97, 66, 0.3); padding-top: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .how-to-get h4 { font-family: var(--font-serif); font-size: 12px; }
+        .how-to-get p { font-size: 11px; max-width: 250px; }
+        .btn-dark-outline { border: 1px solid #332615; color: #332615; padding: 8px 15px; font-size: 10px; text-transform: uppercase; font-family: var(--font-serif); background: transparent; cursor: pointer; transition: all 0.3s; }
+        .btn-dark-outline:hover { background: #332615; color: var(--beige); }
 
-        .hero-statement {
-            font-family: var(--font-serif);
-            font-size: 24px;
-            line-height: 1.4;
-            letter-spacing: 2px;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-        }
-
-        /* --- 3. CARACTERÍSTICAS (CINTA BEIGE) --- */
-        .features-bar {
-            background-color: var(--beige);
-            color: #332615;
-            padding: 40px 20px;
-        }
-
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            text-align: center;
-        }
-
-        .feature-item i {
-            font-size: 28px;
-            color: #5a4528;
-            margin-bottom: 12px;
-        }
-
-        .feature-item h3 {
-            font-family: var(--font-serif);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .feature-item p {
-            font-size: 11px;
-            line-height: 1.4;
-            opacity: 0.9;
-        }
-
-        /* --- 4. SECCIÓN MARÍA GABINA Y ORIGEN --- */
-        .story-origin {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background-color: #f1ebd9; /* Tono pergamino claro del diseño */
-            color: #222;
-        }
-
-        /* Bloque Izquierdo: María Gabina */
-        .story-block {
-            background-color: #0d0d0d;
-            color: var(--text-light);
-            display: flex;
-            padding: 60px;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .story-img {
-            flex: 1;
-            border: 1px solid var(--gold);
-            padding: 5px;
-        }
-
-        .story-text {
-            flex: 1.2;
-        }
-
-        .story-text h2 {
-            font-family: var(--font-serif);
-            color: var(--gold);
-            font-size: 28px;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-        }
-
-        .story-text .subtitle {
-            font-family: var(--font-serif);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--beige);
-            margin-bottom: 25px;
-        }
-
-        .story-text p {
-            font-size: 11px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: #ccc;
-            text-align: justify;
-        }
-
-        /* Bloque Derecho: Origen e Infraestructura */
-        .origin-block {
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .origin-header h2 {
-            font-family: var(--font-serif);
-            font-size: 22px;
-            letter-spacing: 2px;
-            color: #332615;
-        }
-
-        .origin-header .subtitle {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #776142;
-            margin-bottom: 20px;
-        }
-
-        .map-container {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .map-graphic {
-            flex: 1;
-            border-radius: 50%;
-            border: 1px solid #776142;
-            overflow: hidden;
-            aspect-ratio: 1;
-            background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400') center/cover; /* Reemplazar con recorte del mapa */
-        }
-
-        .map-main {
-            flex: 1.5;
-            /* Reemplazar con la imagen completa del mapa de Veracruz */
-            background: url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=600') center/cover;
-            height: 200px;
-            border: 1px solid #776142;
-        }
-
-        .how-to-get {
-            border-top: 1px solid rgba(119, 97, 66, 0.3);
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .how-to-get h4 {
-            font-family: var(--font-serif);
-            font-size: 12px;
-            margin-bottom: 5px;
-        }
-
-        .how-to-get p {
-            font-size: 11px;
-            max-width: 250px;
-        }
-
-        .route-info {
-            text-align: right;
-            font-size: 11px;
-        }
-
-        .route-info div {
-            margin-bottom: 10px;
-        }
-
-        .btn-dark-outline {
-            border: 1px solid #332615;
-            color: #332615;
-            padding: 8px 15px;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-family: var(--font-serif);
-            letter-spacing: 1px;
-        }
-
-        /* --- 5. GRILLA DE CATEGORÍAS (BLOQUES INFERIORES) --- */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            background-color: var(--bg-dark);
-        }
-
-        .category-card {
-            position: relative;
-            height: 380px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px 20px;
-            border-right: 1px solid rgba(179, 146, 88, 0.15);
-            overflow: hidden;
-        }
-
-        .category-card:last-child {
-            border-right: none;
-        }
-
-        /* Fondos individuales para simular el diseño */
+        /* --- 5. CATEGORÍAS Y TIENDA --- */
+        .categories-grid { display: grid; grid-template-columns: repeat(5, 1fr); background-color: var(--bg-dark); }
+        .category-card { position: relative; height: 380px; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 20px; border-right: 1px solid rgba(179, 146, 88, 0.15); overflow: hidden; }
+        .category-card:last-child { border-right: none; }
+        
         .cat-1 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=500') center/cover; }
         .cat-2 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500') center/cover; }
         .cat-3 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500') center/cover; }
         .cat-4 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500') center/cover; }
-        .cat-5 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), #121212; } /* Simula la tienda del diseño */
+        .cat-5 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), #121212; transition: background 0.3s; }
+        .cat-5:hover { background-color: #1a1a1a; }
 
-        .cat-logo {
-            width: 50px;
-            margin: 0 auto 20px auto;
-        }
-
-        .product-img-shop {
-            width: 100px;
-            margin: 0 auto 15px auto;
-        }
-
-        .category-card h3 {
-            font-family: var(--font-serif);
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: var(--text-light);
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .category-card .cat-subtitle {
-            font-size: 10px;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .category-card p {
-            font-size: 11px;
-            color: #aaa;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .category-card .btn-gold {
-            align-self: flex-start;
-            padding: 6px 12px;
-            font-size: 9px;
-        }
+        .category-card h3 { font-family: var(--font-serif); font-size: 14px; color: var(--text-light); text-transform: uppercase; }
+        .category-card .cat-subtitle { font-size: 10px; color: var(--gold); text-transform: uppercase; margin-bottom: 15px; }
+        .category-card .btn-gold { align-self: flex-start; padding: 6px 12px; font-size: 9px; }
 
         /* --- 6. FOOTER --- */
-        footer {
-            background-color: #050505;
-            border-top: 1px solid rgba(179, 146, 88, 0.2);
-            padding: 60px 20px 20px 20px;
-            font-size: 12px;
-            color: #888;
-        }
+        footer { background-color: #050505; border-top: 1px solid rgba(179, 146, 88, 0.2); padding: 60px 20px 20px 20px; font-size: 12px; color: #888; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand h3 { font-family: var(--font-serif); color: var(--gold); font-size: 18px; }
+        .social-icons a { font-size: 18px; margin-right: 15px; color: var(--text-light); }
+        .social-icons a:hover { color: var(--gold); transform: translateY(-3px); display: inline-block; }
+        
+        .footer-links h4, .footer-contact h4, .footer-subscribe h4 { font-family: var(--font-serif); color: var(--text-light); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+        
+        .subscribe-form { display: flex; border-bottom: 1px solid var(--gold); padding-bottom: 5px; }
+        .subscribe-form input { background: transparent; border: none; color: var(--text-light); width: 100%; outline: none; }
+        .subscribe-form button { background: transparent; border: none; color: var(--gold); cursor: pointer; transition: transform 0.3s;}
+        .subscribe-form button:hover { transform: translateX(5px); }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid #111; padding-top: 20px; display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; }
 
-        .footer-brand h3 {
-            font-family: var(--font-serif);
-            color: var(--gold);
-            font-size: 18px;
-            letter-spacing: 2px;
+        /* --- VENTANA MODAL (INTERACTIVIDAD AVANZADA) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition);
         }
-
-        .footer-brand p {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 10px 0 20px 0;
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .modal-content {
+            background: var(--bg-dark-accent); border: 1px solid var(--gold);
+            padding: 40px; max-width: 500px; width: 90%; text-align: center;
+            transform: scale(0.9); transition: var(--transition); position: relative;
         }
-
-        .social-icons a {
-            font-size: 18px;
-            margin-right: 15px;
-            color: var(--text-light);
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 24px;
+            color: var(--gold); cursor: pointer; background: transparent; border: none;
         }
+        .modal-content h3 { font-family: var(--font-serif); color: var(--gold); margin-bottom: 15px; font-size: 22px;}
+        .modal-content p { color: #ccc; font-size: 13px; margin-bottom: 25px; }
 
-        .social-icons a:hover {
-            color: var(--gold);
-        }
-
-        .footer-links h4, .footer-contact h4, .footer-subscribe h4 {
-            font-family: var(--font-serif);
-            color: var(--text-light);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 8px;
-        }
-
-        .footer-links a {
-            font-size: 11px;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .footer-contact p {
-            font-size: 11px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-subscribe p {
-            font-size: 11px;
-            margin-bottom: 15px;
-        }
-
-        .subscribe-form {
-            display: flex;
-            border-bottom: 1px solid var(--gold);
-            padding-bottom: 5px;
-        }
-
-        .subscribe-form input {
-            background: transparent;
-            border: none;
-            color: var(--text-light);
-            font-family: var(--font-sans);
-            font-size: 11px;
-            width: 100%;
-            outline: none;
-        }
-
-        .subscribe-form button {
-            background: transparent;
-            border: none;
-            color: var(--gold);
-            cursor: pointer;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            border-top: 1px solid #111;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- RESPONSIVO (MOBILE AUTOMÁTICO) --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
-            .features-container, .categories-grid, .footer-container {
-                grid-template-columns: 1fr;
-            }
-            .story-origin {
-                grid-template-columns: 1fr;
-            }
-            .story-block {
-                flex-direction: column;
-            }
-            .hero-statement {
-                font-size: 18px;
-            }
-            .nav-links {
-                display: none; /* Se simplifica en móviles */
-            }
+            .features-container, .categories-grid, .footer-container { grid-template-columns: 1fr; }
+            .story-origin { grid-template-columns: 1fr; }
+            .story-block { flex-direction: column; }
+            .nav-links { display: none; } /* En una app real aquí iría un menú hamburguesa */
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="navbar">
         <nav class="nav-container">
             <ul class="nav-links">
-                <li><a href="#" class="active">Inicio</a></li>
-                <li><a href="#">María Gabina</a></li>
-                <li><a href="#">La Sierra</a></li>
-                <li><a href="#">Leyendas</a></li>
-                <li><a href="#">Nuestro Café</a></li>
-                <li><a href="#">El Logo</a></li>
-                <li><a href="#">Tienda</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li class="cart-icon"><a href="#"><i class="fa-solid fa-bag-shopping"></i> 0</a></li>
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#maria-gabina" class="nav-link">María Gabina</a></li>
+                <li><a href="#origen" class="nav-link">La Sierra</a></li>
+                <li><a href="#categorias" class="nav-link">Nuestro Café</a></li>
+                <li><a href="#" onclick="abrirModal('tienda', event)"><i class="fa-solid fa-store"></i> Tienda</a></li>
+                <li class="cart-icon"><a href="#" onclick="abrirModal('carrito', event)"><i class="fa-solid fa-bag-shopping"></i> <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
+    <section id="inicio" class="hero">
+        <div class="hero-content reveal">
             <div class="hero-brand">
                 <img src="https://via.placeholder.com/150x150/000000/b39258?text=LOGO" alt="Gabina Logo" class="main-logo">
                 <div class="sub-brand">GABINA</div>
@@ -582,12 +273,14 @@
                     Café que nace de la tierra, de la historia y de una mujer que nunca dejó de soñar.
                 </div>
                 
-                <button class="btn-gold">Conoce nuestra historia</button>
+                <button class="btn-gold" onclick="document.getElementById('maria-gabina').scrollIntoView({behavior: 'smooth'})">
+                    Conoce nuestra historia
+                </button>
             </div>
         </div>
     </section>
 
-    <section class="features-bar">
+    <section class="features-bar reveal">
         <div class="features-container">
             <div class="feature-item">
                 <i class="fa-solid fa-mountain-sun"></i>
@@ -618,7 +311,7 @@
     </section>
 
     <section class="story-origin">
-        <div class="story-block">
+        <div id="maria-gabina" class="story-block reveal">
             <div class="story-img">
                 <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=400" alt="María Gabina Familia">
             </div>
@@ -627,110 +320,208 @@
                 <div class="subtitle">Una vida entre cafetales, tradición y amor</div>
                 <p>Nació y creció entre las montañas de Citlaltépetl, Veracruz, donde el café forma parte de la vida cotidiana y las historias se transmiten de generación en generación.</p>
                 <p>Durante años cultivó, recolectó, tostó y molió café siguiendo las costumbres aprendidas de sus mayores.</p>
-                <p>Gabina de la Sierra nace como un homenaje en vida a esa mujer trabajadora, cuya dedicación permitió preservar no solo una forma de preparar café, sino también una parte de la historia de su comunidad.</p>
-                <button class="btn-gold" style="margin-top: 15px;">Conoce su historia completa</button>
+                <button class="btn-gold" style="margin-top: 15px;" onclick="abrirModal('historia', event)">Conoce su historia completa</button>
             </div>
         </div>
 
-        <div class="origin-block">
+        <div id="origen" class="origin-block reveal">
             <div class="origin-header">
                 <h2>Nuestro Origen</h2>
                 <div class="subtitle">Citlaltépetl, Veracruz</div>
             </div>
-            
             <div class="map-container">
                 <div class="map-graphic"></div>
-                <div class="map-main"></div>
+                <div class="map-main" onclick="window.open('https://maps.google.com/?q=Citlaltepetl+Veracruz', '_blank')"></div>
             </div>
-
             <div class="how-to-get">
                 <div>
                     <h4>¿Cómo llegar?</h4>
-                    <p>Desde Naranjos, toma la carretera hacia Citlaltépetl (Carr. Federal 180) y continúa rumbo a la comunidad.</p>
+                    <p>Desde Naranjos, toma la carretera hacia Citlaltépetl (Carr. Federal 180).</p>
                 </div>
-                <div class="route-info">
-                    <div><i class="fa-solid fa-car"></i> Tiempo aproximado:<br><strong>35 - 40 min</strong></div>
-                    <button class="btn-dark-outline">Ver ruta en mapa</button>
+                <div class="route-info" style="text-align: right;">
+                    <div style="font-size: 11px; margin-bottom: 10px;"><i class="fa-solid fa-car"></i> Tiempo aproximado:<br><strong>35 - 40 min</strong></div>
+                    <button class="btn-dark-outline" onclick="window.open('https://maps.google.com/?q=Citlaltepetl+Veracruz', '_blank')">Ver ruta en mapa</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="categories-grid">
+    <section id="categorias" class="categories-grid reveal">
         <div class="category-card cat-1">
             <h3>La Sierra de Otontepec</h3>
-            <div class="cat-subtitle">Montañas, niebla y naturaleza que dan vida a nuestro café.</div>
-            <button class="btn-gold">Ver más</button>
+            <div class="cat-subtitle">Montañas, niebla y naturaleza.</div>
+            <button class="btn-gold" onclick="abrirModal('sierra', event)">Ver más</button>
         </div>
         <div class="category-card cat-2">
             <h3>Leyendas de la Sierra</h3>
-            <div class="cat-subtitle">Sirenas, tepas y susurros que habitan entre la niebla.</div>
-            <button class="btn-gold">Ver más</button>
+            <div class="cat-subtitle">Sirenas y susurros en la niebla.</div>
+            <button class="btn-gold" onclick="abrirModal('leyendas', event)">Ver más</button>
         </div>
         <div class="category-card cat-3">
             <h3>Nuestro Café</h3>
-            <div class="cat-subtitle">Del campo a tu taza. Conoce nuestro proceso, tueste y perfil de sabor.</div>
-            <button class="btn-gold">Ver más</button>
+            <div class="cat-subtitle">Del campo a tu taza. Proceso y tueste.</div>
+            <button class="btn-gold" onclick="abrirModal('cafe', event)">Ver más</button>
         </div>
         <div class="category-card cat-4">
             <h3>El Significado del Logo</h3>
             <div class="cat-subtitle">Cada elemento cuenta una historia.</div>
-            <button class="btn-gold">Ver más</button>
+            <button class="btn-gold" onclick="abrirModal('logo', event)">Ver más</button>
         </div>
         <div class="category-card cat-5" style="text-align: center; justify-content: center;">
-            <img src="https://via.placeholder.com/100x150/000000/b39258?text=Café+Pack" alt="Empaque Gabina" class="product-img-shop">
-            <h3 style="font-size: 16px;">Tienda</h3>
-            <div class="cat-subtitle" style="color: #fff; margin-bottom: 15px;">Lleva a casa el café que nació entre niebla, montañas y leyendas.</div>
-            <button class="btn-gold" style="align-self: center;">Comprar ahora</button>
+            <img src="https://via.placeholder.com/100x150/000000/b39258?text=Café" alt="Empaque" style="width: 100px; margin: 0 auto 15px auto;">
+            <h3 style="font-size: 16px;">Tienda Virtual</h3>
+            <div class="cat-subtitle" style="color: #fff; margin-bottom: 15px;">Lleva a casa nuestra historia.</div>
+            <button class="btn-gold" style="align-self: center;" onclick="agregarAlCarrito(event)">Agregar al carrito</button>
         </div>
     </section>
 
     <footer>
-        <div class="footer-container">
+        <div class="footer-container reveal">
             <div class="footer-brand">
                 <h3>GABINA DE LA SIERRA</h3>
-                <p>Hecho a leña,<br>contado en susurros</p>
+                <p style="font-size: 10px; text-transform: uppercase; margin: 10px 0 20px 0;">Hecho a leña,<br>contado en susurros</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
-            
-            <div class="footer-links">
-                <h4>Enlaces</h4>
-                <ul>
-                    <li><a href="#">María Gabina</a></li>
-                    <li><a href="#">La Sierra</a></li>
-                    <li><a href="#">Leyendas</a></li>
-                    <li><a href="#">Nuestro Café</a></li>
-                    <li><a href="#">El Logo</a></li>
-                    <li><a href="#">Tienda</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </div>
-
             <div class="footer-contact">
                 <h4>Contacto</h4>
-                <p><i class="fa-solid fa-location-dot"></i> Citlaltépetl, Naranjos<br>Veracruz, México</p>
-                <p><i class="fa-solid fa-phone"></i> +52 272 123 4567</p>
-                <p><i class="fa-solid fa-envelope"></i> hola@gabinadelasierra.mx</p>
+                <p style="margin-bottom:10px;"><i class="fa-solid fa-location-dot"></i> Citlaltépetl, Veracruz</p>
+                <p style="margin-bottom:10px;"><a href="tel:+522721234567"><i class="fa-solid fa-phone"></i> +52 272 123 4567</a></p>
+                <p><a href="mailto:hola@gabinadelasierra.mx"><i class="fa-solid fa-envelope"></i> hola@gabinadelasierra.mx</a></p>
             </div>
-
             <div class="footer-subscribe">
                 <h4>Suscríbete</h4>
-                <p>Recibe historias, novedades y café directo de la Sierra.</p>
-                <form class="subscribe-form" onsubmit="event.preventDefault();">
-                    <input type="email" placeholder="Tu correo electrónico">
+                <p style="margin-bottom: 15px;">Novedades directo de la Sierra.</p>
+                <form class="subscribe-form" onsubmit="suscribir(event)">
+                    <input type="email" id="emailInput" placeholder="Tu correo electrónico" required>
                     <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
                 </form>
             </div>
         </div>
-
         <div class="footer-bottom">
             <div>© 2026 Gabina de la Sierra. Todos los derechos reservados.</div>
             <div>Hecho con respeto. Hecho en Veracruz. <i class="fa-solid fa-heart" style="color: var(--gold);"></i></div>
         </div>
     </footer>
 
+    <div id="interactiveModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="cerrarModal()">&times;</button>
+            <i id="modalIcon" class="fa-solid fa-mug-hot" style="font-size: 40px; color: var(--gold); margin-bottom: 20px;"></i>
+            <h3 id="modalTitle">Próximamente</h3>
+            <p id="modalText">Esta sección estará disponible muy pronto. Estamos preparando los mejores detalles de la Sierra para ti.</p>
+            <button class="btn-gold" onclick="cerrarModal()">Aceptar</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. HEADER INTELIGENTE (Sticky Nav)
+        const header = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 2. SCROLL REVEAL ANIMATIONS (Aparición al bajar)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Animar solo una vez
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. ACTUALIZAR ENLACE ACTIVO EN EL MENÚ SEGÚN LA SECCIÓN
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 4. LÓGICA DE VENTANA MODAL (Para botones sin página de destino aún)
+        const modal = document.getElementById('interactiveModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const modalIcon = document.getElementById('modalIcon');
+
+        // Textos dinámicos según el botón presionado
+        const modalContentData = {
+            tienda: { title: "Nuestra Tienda", text: "Próximamente podrás comprar nuestro café en línea y recibirlo en todo México.", icon: "fa-store" },
+            carrito: { title: "Tu Carrito", text: "Aún no tienes productos en tu carrito. ¡Explora nuestro café!", icon: "fa-cart-shopping" },
+            historia: { title: "La Historia Completa", text: "Estamos redactando los manuscritos finales sobre la vida de María Gabina. Vuelve pronto.", icon: "fa-book-open" },
+            sierra: { title: "La Sierra de Otontepec", text: "Conoce más sobre la biodiversidad y el microclima que hace único a nuestro grano.", icon: "fa-mountain" },
+            leyendas: { title: "Mitos y Leyendas", text: "Descubre los cuentos que se susurran alrededor del fuego mientras tostamos el café.", icon: "fa-cloud-moon" },
+            cafe: { title: "Proceso del Café", text: "Desde el corte de la cereza hasta el tostado a leña. Una obra de artesanía.", icon: "fa-mug-hot" },
+            logo: { title: "Identidad", text: "El cabello de sirena, el grano de café y las montañas. El alma gráfica de Gabina.", icon: "fa-pen-nib" }
+        };
+
+        function abrirModal(tipo, evento) {
+            if(evento) evento.preventDefault(); // Evitar que el link salte hacia arriba
+            const data = modalContentData[tipo];
+            if(data) {
+                modalTitle.innerText = data.title;
+                modalText.innerText = data.text;
+                modalIcon.className = `fa-solid ${data.icon}`;
+            }
+            modal.classList.add('active');
+        }
+
+        function cerrarModal() {
+            modal.classList.remove('active');
+        }
+
+        // Cerrar modal al hacer clic fuera del cuadro
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) cerrarModal();
+        });
+
+        // 5. SIMULACIÓN DE CARRITO DE COMPRAS
+        let cartCount = 0;
+        function agregarAlCarrito(evento) {
+            evento.preventDefault();
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            // Reusar el modal para dar feedback
+            modalTitle.innerText = "¡Agregado!";
+            modalText.innerText = "El café de la Sierra se ha añadido a tu carrito correctamente.";
+            modalIcon.className = "fa-solid fa-check-circle";
+            modal.classList.add('active');
+        }
+
+        // 6. SIMULACIÓN DE SUSCRIPCIÓN (Evita recargar la página)
+        function suscribir(evento) {
+            evento.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            modalTitle.innerText = "¡Gracias por suscribirte!";
+            modalText.innerText = `Hemos registrado el correo: ${email}. Pronto recibirás historias de la Sierra.`;
+            modalIcon.className = "fa-solid fa-envelope-open-text";
+            modal.classList.add('active');
+            document.getElementById('emailInput').value = '';
+        }
+    </script>
 </body>
 </html>
