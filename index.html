@@ -1,290 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Café de Origen</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GABINA DE LA SIERRA</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    body {
+      background: #0f0f0f;
+      color: #fff;
+    }
 
-body{
-    font-family:'Montserrat',sans-serif;
-    background:#ffffff;
-    color:#1a1a1a;
-    line-height:1.6;
-}
+    /* NAV */
+    header {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 60px;
+      z-index: 10;
+    }
 
-header{
-    background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
-    url('https://images.unsplash.com/photo-1447933601403-0c6688de566e');
-    background-size:cover;
-    background-position:center;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
-}
+    header nav a {
+      color: #fff;
+      margin: 0 12px;
+      text-decoration: none;
+      font-size: 14px;
+    }
 
-.hero{
-    max-width:800px;
-    padding:20px;
-}
+    header nav a:hover {
+      color: #c8a35f;
+    }
 
-.hero h1{
-    font-family:'Playfair Display',serif;
-    font-size:4rem;
-    margin-bottom:20px;
-}
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: url("https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 60px;
+    }
 
-.hero p{
-    font-size:1.2rem;
-    margin-bottom:30px;
-}
+    .hero-content {
+      max-width: 600px;
+      background: rgba(0,0,0,0.5);
+      padding: 30px;
+      border-radius: 10px;
+    }
 
-.btn{
-    display:inline-block;
-    background:#6f4e37;
-    color:white;
-    text-decoration:none;
-    padding:15px 30px;
-    border-radius:5px;
-    margin:5px;
-    transition:.3s;
-}
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
 
-.btn:hover{
-    background:#4b3425;
-}
+    .hero p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
 
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(0,0,0,.9);
-    z-index:1000;
-}
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #c8a35f;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
 
-nav ul{
-    display:flex;
-    justify-content:center;
-    list-style:none;
-}
+    /* SECCIONES */
+    .section {
+      padding: 60px;
+      text-align: center;
+    }
 
-nav ul li{
-    margin:15px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
 
-nav ul li a{
-    color:white;
-    text-decoration:none;
-    font-weight:500;
-}
+    .card {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
-section{
-    padding:80px 10%;
-}
+    .card h3 {
+      color: #c8a35f;
+      margin-bottom: 10px;
+    }
 
-.section-title{
-    text-align:center;
-    font-family:'Playfair Display',serif;
-    font-size:2.5rem;
-    margin-bottom:40px;
-    color:#6f4e37;
-}
-
-.historia{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
-}
-
-.historia img{
-    width:100%;
-    border-radius:10px;
-}
-
-.catalogo{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.producto{
-    background:#f5f5f5;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-
-.producto img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
-
-.producto-info{
-    padding:20px;
-}
-
-.producto h3{
-    margin-bottom:10px;
-    color:#6f4e37;
-}
-
-.contacto{
-    background:#1a1a1a;
-    color:white;
-    text-align:center;
-}
-
-.contacto p{
-    margin:10px 0;
-}
-
-footer{
-    background:#000;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-
-@media(max-width:768px){
-
-.hero h1{
-    font-size:2.7rem;
-}
-
-.historia{
-    grid-template-columns:1fr;
-}
-
-}
-</style>
-
+    /* FOOTER */
+    footer {
+      background: #000;
+      padding: 40px;
+      text-align: center;
+      margin-top: 40px;
+      color: #aaa;
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-<ul>
-<li><a href="#inicio">Inicio</a></li>
-<li><a href="#historia">Historia</a></li>
-<li><a href="#catalogo">Catálogo</a></li>
-<li><a href="#contacto">Contacto</a></li>
-</ul>
-</nav>
+  <!-- NAV -->
+  <header>
+    <div><strong>GABINA</strong></div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#historia">Historia</a>
+      <a href="#cafe">Café</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
 
-<header id="inicio">
-<div class="hero">
-<h1>Café de Origen</h1>
-<p>
-Del origen a tu taza. Café seleccionado cuidadosamente para ofrecer una experiencia única en aroma, sabor y tradición.
-</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Café de la Sierra</h1>
+      <p>
+        Un café cultivado en las montañas, con historia, tradición y el sabor de la tierra.
+      </p>
+      <a class="btn" href="#historia">Conoce más</a>
+    </div>
+  </section>
 
-<a href="#catalogo" class="btn">Ver Catálogo</a>
-<a href="#contacto" class="btn">Contáctanos</a>
-</div>
-</header>
+  <!-- HISTORIA -->
+  <section class="section" id="historia">
+    <h2>Historia</h2>
+    <p>Un proyecto nacido en Veracruz, México, donde el café es tradición familiar.</p>
 
-<section id="historia">
+    <div class="grid">
+      <div class="card">
+        <h3>Origen</h3>
+        <p>Cultivado en la Sierra con cuidado artesanal.</p>
+      </div>
 
-<h2 class="section-title">Nuestra Historia</h2>
+      <div class="card">
+        <h3>Proceso</h3>
+        <p>Seleccionado, tostado y molido con dedicación.</p>
+      </div>
 
-<div class="historia">
+      <div class="card">
+        <h3>Calidad</h3>
+        <p>100% café arábica de altura.</p>
+      </div>
+    </div>
+  </section>
 
-<div>
-<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085" alt="Productor de café">
-</div>
+  <!-- CAFÉ -->
+  <section class="section" id="cafe">
+    <h2>Nuestro Café</h2>
+    <p>Descubre el sabor único de la sierra.</p>
 
-<div>
-<h3>La pasión detrás de cada taza</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>Molido</h3>
+        <p>Perfecto para cafetera tradicional.</p>
+      </div>
 
-<p>
-Nuestro café nace del trabajo de productores apasionados por preservar la calidad y tradición cafetalera.
-</p>
+      <div class="card">
+        <h3>Grano</h3>
+        <p>Para quienes prefieren molerlo en casa.</p>
+      </div>
 
-<br>
+      <div class="card">
+        <h3>Tostado</h3>
+        <p>Perfil suave con aroma intenso.</p>
+      </div>
+    </div>
+  </section>
 
-<p>
-Cada grano es seleccionado cuidadosamente desde su origen para garantizar una experiencia excepcional. Nuestra misión es conectar a las personas con el verdadero sabor del café de especialidad.
-</p>
+  <!-- CONTACTO -->
+  <section class="section" id="contacto">
+    <h2>Contacto</h2>
+    <p>Escríbenos para pedidos o información.</p>
+    <a class="btn" href="mailto:contacto@cafe.com">Enviar correo</a>
+  </section>
 
-<br>
-
-<p>
-Aquí puedes agregar la historia real del productor, la región de cultivo y la trayectoria de la marca.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="catalogo">
-
-<h2 class="section-title">Catálogo</h2>
-
-<div class="catalogo">
-
-<div class="producto">
-<img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e" alt="">
-<div class="producto-info">
-<h3>Café Molido Tradicional</h3>
-<p>Notas de chocolate y nuez.</p>
-<p><strong>$180 MXN</strong></p>
-</div>
-</div>
-
-<div class="producto">
-<img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13" alt="">
-<div class="producto-info">
-<h3>Café en Grano Premium</h3>
-<p>Tostado medio de origen selecto.</p>
-<p><strong>$250 MXN</strong></p>
-</div>
-</div>
-
-<div class="producto">
-<img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0" alt="">
-<div class="producto-info">
-<h3>Edición Especial</h3>
-<p>Perfil aromático complejo y balanceado.</p>
-<p><strong>$290 MXN</strong></p>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<section class="contacto" id="contacto">
-
-<h2 class="section-title" style="color:white;">Contacto</h2>
-
-<p>📍 México</p>
-<p>📞 +52 000 000 0000</p>
-<p>📧 contacto@cafedeorigen.com</p>
-<p>📱 WhatsApp disponible para pedidos</p>
-
-<br>
-
-<a href="#" class="btn">Enviar Mensaje</a>
-
-</section>
-
-<footer>
-<p>© 2026 Café de Origen. Todos los derechos reservados.</p>
-</footer>
+  <footer>
+    © 2026 Café de la Sierra - Hecho para GitHub Pages
+  </footer>
 
 </body>
 </html>
