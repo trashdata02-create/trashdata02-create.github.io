@@ -107,7 +107,6 @@
             position: relative;
         }
 
-        /* Efecto subrayado dorado en enlaces */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -214,7 +213,7 @@
 
         .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid #111; padding-top: 20px; display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; }
 
-        /* --- VENTANA MODAL (INTERACTIVIDAD AVANZADA) --- */
+        /* --- VENTANA MODAL --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
@@ -235,14 +234,14 @@
             color: var(--gold); cursor: pointer; background: transparent; border: none;
         }
         .modal-content h3 { font-family: var(--font-serif); color: var(--gold); margin-bottom: 15px; font-size: 22px;}
-        .modal-content p { color: #ccc; font-size: 13px; margin-bottom: 25px; }
+        .modal-content p { color: #ccc; font-size: 13px; margin-bottom: 25px; line-height: 1.8; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .features-container, .categories-grid, .footer-container { grid-template-columns: 1fr; }
             .story-origin { grid-template-columns: 1fr; }
             .story-block { flex-direction: column; }
-            .nav-links { display: none; } /* En una app real aquí iría un menú hamburguesa */
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -256,7 +255,6 @@
                 <li><a href="#origen" class="nav-link">La Sierra</a></li>
                 <li><a href="#categorias" class="nav-link">Nuestro Café</a></li>
                 <li><a href="#" onclick="abrirModal('tienda', event)"><i class="fa-solid fa-store"></i> Tienda</a></li>
-                <li class="cart-icon"><a href="#" onclick="abrirModal('carrito', event)"><i class="fa-solid fa-bag-shopping"></i> <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
@@ -369,9 +367,9 @@
         </div>
         <div class="category-card cat-5" style="text-align: center; justify-content: center;">
             <img src="https://via.placeholder.com/100x150/000000/b39258?text=Café" alt="Empaque" style="width: 100px; margin: 0 auto 15px auto;">
-            <h3 style="font-size: 16px;">Tienda Virtual</h3>
+            <h3 style="font-size: 16px;">Nuestra Tienda</h3>
             <div class="cat-subtitle" style="color: #fff; margin-bottom: 15px;">Lleva a casa nuestra historia.</div>
-            <button class="btn-gold" style="align-self: center;" onclick="agregarAlCarrito(event)">Agregar al carrito</button>
+            <button class="btn-gold" style="align-self: center;" onclick="abrirModal('tienda', event)">Ver tienda</button>
         </div>
     </section>
 
@@ -408,16 +406,16 @@
 
     <div id="interactiveModal" class="modal-overlay">
         <div class="modal-content">
-            <button class="close-modal" onclick="cerrarModal()">&times;</button>
+            <button class="close-modal" onclick="cerrarModal()">×</button>
             <i id="modalIcon" class="fa-solid fa-mug-hot" style="font-size: 40px; color: var(--gold); margin-bottom: 20px;"></i>
             <h3 id="modalTitle">Próximamente</h3>
-            <p id="modalText">Esta sección estará disponible muy pronto. Estamos preparando los mejores detalles de la Sierra para ti.</p>
+            <p id="modalText">Esta sección estará disponible muy pronto.</p>
             <button class="btn-gold" onclick="cerrarModal()">Aceptar</button>
         </div>
     </div>
 
     <script>
-        // 1. HEADER INTELIGENTE (Sticky Nav)
+        // 1. HEADER INTELIGENTE
         const header = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -427,33 +425,29 @@
             }
         });
 
-        // 2. SCROLL REVEAL ANIMATIONS (Aparición al bajar)
+        // 2. SCROLL REVEAL ANIMATIONS
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Animar solo una vez
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.15 });
-
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 3. ACTUALIZAR ENLACE ACTIVO EN EL MENÚ SEGÚN LA SECCIÓN
+        // 3. ACTUALIZAR ENLACE ACTIVO EN EL MENÚ
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
-
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (pageYOffset >= (sectionTop - 200)) {
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${current}`) {
@@ -462,25 +456,49 @@
             });
         });
 
-        // 4. LÓGICA DE VENTANA MODAL (Para botones sin página de destino aún)
+        // =====================================================================
+        // 4. AQUÍ DEBES PONER TU INFORMACIÓN REAL (LOS DATOS DE LA VENTANA MODAL)
+        // =====================================================================
+        const modalContentData = {
+            tienda: { 
+                title: "Nuestra Tienda", 
+                text: "Aquí podrás agregar el enlace a tu futura tienda en línea o WhatsApp para hacer pedidos.", 
+                icon: "fa-store" 
+            },
+            historia: { 
+                title: "La Historia de María Gabina", 
+                text: "Escribe aquí la historia completa de María Gabina, sus raíces y su legado en la comunidad de Citlaltépetl.", 
+                icon: "fa-book-open" 
+            },
+            sierra: { 
+                title: "La Sierra de Otontepec", 
+                text: "Describe aquí las características de la sierra, el clima y cómo la niebla beneficia tus granos de café.", 
+                icon: "fa-mountain" 
+            },
+            leyendas: { 
+                title: "Mitos y Leyendas", 
+                text: "Escribe aquí las leyendas de las sirenas, los tepas y las historias tradicionales de tu región.", 
+                icon: "fa-cloud-moon" 
+            },
+            cafe: { 
+                title: "Nuestro Proceso", 
+                text: "Detalla aquí tu proceso de cultivo, recolección y el tradicional tostado a leña.", 
+                icon: "fa-mug-hot" 
+            },
+            logo: { 
+                title: "Identidad del Logo", 
+                text: "Explica aquí qué significa el cabello de sirena, las montañas y los elementos visuales de tu marca.", 
+                icon: "fa-pen-nib" 
+            }
+        };
+
         const modal = document.getElementById('interactiveModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalText = document.getElementById('modalText');
         const modalIcon = document.getElementById('modalIcon');
 
-        // Textos dinámicos según el botón presionado
-        const modalContentData = {
-            tienda: { title: "Nuestra Tienda", text: "Próximamente podrás comprar nuestro café en línea y recibirlo en todo México.", icon: "fa-store" },
-            carrito: { title: "Tu Carrito", text: "Aún no tienes productos en tu carrito. ¡Explora nuestro café!", icon: "fa-cart-shopping" },
-            historia: { title: "La Historia Completa", text: "Estamos redactando los manuscritos finales sobre la vida de María Gabina. Vuelve pronto.", icon: "fa-book-open" },
-            sierra: { title: "La Sierra de Otontepec", text: "Conoce más sobre la biodiversidad y el microclima que hace único a nuestro grano.", icon: "fa-mountain" },
-            leyendas: { title: "Mitos y Leyendas", text: "Descubre los cuentos que se susurran alrededor del fuego mientras tostamos el café.", icon: "fa-cloud-moon" },
-            cafe: { title: "Proceso del Café", text: "Desde el corte de la cereza hasta el tostado a leña. Una obra de artesanía.", icon: "fa-mug-hot" },
-            logo: { title: "Identidad", text: "El cabello de sirena, el grano de café y las montañas. El alma gráfica de Gabina.", icon: "fa-pen-nib" }
-        };
-
         function abrirModal(tipo, evento) {
-            if(evento) evento.preventDefault(); // Evitar que el link salte hacia arriba
+            if(evento) evento.preventDefault();
             const data = modalContentData[tipo];
             if(data) {
                 modalTitle.innerText = data.title;
@@ -494,25 +512,11 @@
             modal.classList.remove('active');
         }
 
-        // Cerrar modal al hacer clic fuera del cuadro
         modal.addEventListener('click', (e) => {
             if(e.target === modal) cerrarModal();
         });
 
-        // 5. SIMULACIÓN DE CARRITO DE COMPRAS
-        let cartCount = 0;
-        function agregarAlCarrito(evento) {
-            evento.preventDefault();
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            // Reusar el modal para dar feedback
-            modalTitle.innerText = "¡Agregado!";
-            modalText.innerText = "El café de la Sierra se ha añadido a tu carrito correctamente.";
-            modalIcon.className = "fa-solid fa-check-circle";
-            modal.classList.add('active');
-        }
-
-        // 6. SIMULACIÓN DE SUSCRIPCIÓN (Evita recargar la página)
+        // 5. SIMULACIÓN DE SUSCRIPCIÓN
         function suscribir(evento) {
             evento.preventDefault();
             const email = document.getElementById('emailInput').value;
