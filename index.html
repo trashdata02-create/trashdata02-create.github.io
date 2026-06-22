@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café de Origen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#ffffff;
+    color:#1a1a1a;
+    line-height:1.6;
+}
+
+header{
+    background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    url('https://images.unsplash.com/photo-1447933601403-0c6688de566e');
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero{
+    max-width:800px;
+    padding:20px;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:1.2rem;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    background:#6f4e37;
+    color:white;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:5px;
+    margin:5px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#4b3425;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,.9);
+    z-index:1000;
+}
+
+nav ul{
+    display:flex;
+    justify-content:center;
+    list-style:none;
+}
+
+nav ul li{
+    margin:15px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+}
+
+section{
+    padding:80px 10%;
+}
+
+.section-title{
+    text-align:center;
+    font-family:'Playfair Display',serif;
+    font-size:2.5rem;
+    margin-bottom:40px;
+    color:#6f4e37;
+}
+
+.historia{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.historia img{
+    width:100%;
+    border-radius:10px;
+}
+
+.catalogo{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.producto{
+    background:#f5f5f5;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.producto img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.producto-info{
+    padding:20px;
+}
+
+.producto h3{
+    margin-bottom:10px;
+    color:#6f4e37;
+}
+
+.contacto{
+    background:#1a1a1a;
+    color:white;
+    text-align:center;
+}
+
+.contacto p{
+    margin:10px 0;
+}
+
+footer{
+    background:#000;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.7rem;
+}
+
+.historia{
+    grid-template-columns:1fr;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+<ul>
+<li><a href="#inicio">Inicio</a></li>
+<li><a href="#historia">Historia</a></li>
+<li><a href="#catalogo">Catálogo</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul>
+</nav>
+
+<header id="inicio">
+<div class="hero">
+<h1>Café de Origen</h1>
+<p>
+Del origen a tu taza. Café seleccionado cuidadosamente para ofrecer una experiencia única en aroma, sabor y tradición.
+</p>
+
+<a href="#catalogo" class="btn">Ver Catálogo</a>
+<a href="#contacto" class="btn">Contáctanos</a>
+</div>
+</header>
+
+<section id="historia">
+
+<h2 class="section-title">Nuestra Historia</h2>
+
+<div class="historia">
+
+<div>
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085" alt="Productor de café">
+</div>
+
+<div>
+<h3>La pasión detrás de cada taza</h3>
+
+<p>
+Nuestro café nace del trabajo de productores apasionados por preservar la calidad y tradición cafetalera.
+</p>
+
+<br>
+
+<p>
+Cada grano es seleccionado cuidadosamente desde su origen para garantizar una experiencia excepcional. Nuestra misión es conectar a las personas con el verdadero sabor del café de especialidad.
+</p>
+
+<br>
+
+<p>
+Aquí puedes agregar la historia real del productor, la región de cultivo y la trayectoria de la marca.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="catalogo">
+
+<h2 class="section-title">Catálogo</h2>
+
+<div class="catalogo">
+
+<div class="producto">
+<img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e" alt="">
+<div class="producto-info">
+<h3>Café Molido Tradicional</h3>
+<p>Notas de chocolate y nuez.</p>
+<p><strong>$180 MXN</strong></p>
+</div>
+</div>
+
+<div class="producto">
+<img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13" alt="">
+<div class="producto-info">
+<h3>Café en Grano Premium</h3>
+<p>Tostado medio de origen selecto.</p>
+<p><strong>$250 MXN</strong></p>
+</div>
+</div>
+
+<div class="producto">
+<img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0" alt="">
+<div class="producto-info">
+<h3>Edición Especial</h3>
+<p>Perfil aromático complejo y balanceado.</p>
+<p><strong>$290 MXN</strong></p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="contacto" id="contacto">
+
+<h2 class="section-title" style="color:white;">Contacto</h2>
+
+<p>📍 México</p>
+<p>📞 +52 000 000 0000</p>
+<p>📧 contacto@cafedeorigen.com</p>
+<p>📱 WhatsApp disponible para pedidos</p>
+
+<br>
+
+<a href="#" class="btn">Enviar Mensaje</a>
+
+</section>
+
+<footer>
+<p>© 2026 Café de Origen. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
