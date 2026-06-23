@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -137,13 +137,13 @@
             margin: 0 auto; width: 100%; padding: 0 50px;
         }
 
-        .hero-brand { max-width: 450px; }
+        .hero-brand { max-width: 550px; text-align: center; }
         .main-logo { width: 290px; margin-bottom: 15px; filter: drop-shadow(0px 0px 8px rgba(0,0,0,0.7)); }
         
-        .hero-brand h1 { font-family: var(--font-serif); font-size:68px; color: var(--beige); line-height: 1.1; letter-spacing: 5px; }
-        .hero-brand .sub-brand { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; margin-bottom: 10px; color: var(--beige); }
-        .hero-brand .tagline { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 30px; }
-        .hero-statement { font-family: var(--font-serif); font-size: 18px; line-height: 1.5; letter-spacing: 2px; margin-bottom: 25px 0 35px; text-transform: none; }
+        .hero-brand h1 { font-family: var(--font-serif); font-size:76px; color: var(--beige); line-height: 1.; letter-spacing: 5px; margin-bottom: 5px; }
+        .hero-brand .sub-brand { font-family: var(--font-serif); font-size: 20px; letter-spacing: 6px; margin-bottom: 20px; color: var(--beige); }
+        .hero-brand .tagline { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--beige); margin-bottom: 25px; line-height: 1.8; }
+        .hero-statement { font-family: var(--font-serif); font-size: 18px; line-height: 1.8; letter-spacing: 1px; margin-bottom: 25px 0 35px; text-transform: none; text-align: center; }
 
         /* --- 3. CARACTERÍSTICAS --- */
         .features-bar { background-color: var(--beige); color: #332615; padding: 40px 20px; }
@@ -266,13 +266,22 @@
         <div class="hero-content reveal">
             <div class="hero-brand">
                 <img src="GABINA LOGO GRANO TRANSPARENTE.png" alt="Gabina Logo" class="main-logo">
-                <div class="sub-brand">GABINA</div>
-                <div class="sub-brand" style="color:var(--gold); font-size:16px;">• DE LA SIERRA •</div>
-                <div class="tagline">HECHO A LEÑA, CONTADO EN SUSURROS<br>CITLALTÉPETL, VERACRUZ</div>
-                
-                <div class="hero-statement">
-                    Algunas historias se escuchan.<br>Otras se saborean.
-                </div>
+                    <h1>GABINA</h1>
+
+                    <div class="sub-brand">
+                        DE LA SIERRA
+                    </div>
+
+                    <div class="tagline">
+                        HECHO A LEÑA,<br>
+                        CONTADO EN SUSURROS<br>
+                        CITLALTÉPETL, VERACRUZ
+                    </div>
+
+                    <div class="hero-statement">
+                        Algunas historias se escuchan.<br>
+                        Otras se saborean.
+                    </div>
                 
                 <button class="btn-gold" onclick="document.getElementById('maria-gabina').scrollIntoView({behavior: 'smooth'})">
                     Conoce nuestro origen
