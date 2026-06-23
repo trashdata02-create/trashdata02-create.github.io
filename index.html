@@ -349,11 +349,11 @@
                     con nuestras raíces y compartir un pedacito de la sierra en cada taza.
                 </p>
                 
-                <button type="button" class="story-button" onclick="openModal('historia')">
+                <button type="button" class="story-button" onclick="abrirModal('historia', event)">
                     CONOCE SU HISTORIA COMPLETA
                 </button>
             </div>
-
+            </div>
         <div id="origen" class="origin-block reveal">
             <div class="origin-header">
                 <h2>Nuestro Origen</h2>
@@ -534,7 +534,7 @@
             const data = modalContentData[tipo];
             if(data) {
                 modalTitle.innerText = data.title;
-                modalText.innerText = data.text;
+                modalText.innerHTML = data.text;
                 modalIcon.className = `fa-solid ${data.icon}`;
             }
             modal.classList.add('active');
