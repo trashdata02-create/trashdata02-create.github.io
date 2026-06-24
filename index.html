@@ -157,7 +157,7 @@
         /* --- 4. MARÍA GABINA Y ORIGEN --- */
         .story-origin { display: grid; grid-template-columns: 1fr 1fr; background-color: #f1ebd9; color: #222; }
         .story-block { background-color: #0d0d0d; color: var(--text-light); display: flex; padding: 60px; gap: 40px; align-items: flex-start; }
-        .story-img { flex: 1; border: 1px solid var(--gold); padding: 5px; overflow: hidden; min-width: 280px; }
+        .story-img { flex: 1; border: 1px solid var(--gold); padding: 5px; overflow: hidden; min-width: 280px; align-self: center; }
         .story-img img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
         .story-block:hover .story-img img { transform: scale(1.05); }
         
@@ -173,7 +173,7 @@
         
         .map-container { display: flex; gap: 20px; align-items: center; margin: 20px 0; }
         .map-graphic { flex: 1; border-radius: 50%; border: 1px solid #776142; aspect-ratio: 1; background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400') center/cover; display: none; }
-        .map-main { flex: 1.5; background: url('./como-llegar.png') center center no-repeat; background-size: cover; height: 320px; border: 1px solid #776142; transition: filter 0.3s; cursor: pointer; }
+        .map-main { flex: 1.5; background-color: #f1ebd9; background: url('./como-llegar.png') background-position: center; background-size: contain; background-repeat: no-repeat; height: 320px; border: 1px solid #776142; transition: filter 0.3s; cursor: pointer; }
         .map-main:hover { filter: brightness(0.8); }
 
         .how-to-get { border-top: 1px solid rgba(119, 97, 66, 0.3); padding-top: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
