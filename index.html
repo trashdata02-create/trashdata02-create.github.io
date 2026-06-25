@@ -197,7 +197,26 @@
         .category-card h3 { font-family: var(--font-serif); font-size: 16px; color: var(--text-light); letter-spacing:1px; margin-bottom:10px; text-transform: uppercase; }
         .category-card .cat-subtitle { font-size: 11px; color: var(--beige); text-transform: none; margin-bottom: 20px; line-height:1.7; }
         .category-card .btn-gold { align-self: flex-start; padding: 6px 12px; font-size: 9px; margin-top:10px; }
-
+        .sierra-whispers { min-height: 90vh; background: #050505; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 24px; }
+        .whispers-content { max-width: 850px; }
+        .sierra-whispers h2,
+        .legends-index h2 { font-family: var(--font-serif); color: var(--text-light); font-weight: 400; letter-spacing: 3px; margin-bottom: 28px; }
+        .sierra-whispers h2 { font-size: clamp(2.4rem, 6vw, 5rem); }
+        .whispers-content p { color: rgba(245, 240, 230, 0.82); font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.9; margin-bottom: 42px; }
+        .legends-index { background: #0a0a0a; padding: 110px 24px; }
+        .legends-content { max-width: 950px; margin: 0 auto; }
+        .legends-index h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
+        .legends-intro { max-width: 720px; color: rgba(245, 240, 230, 0.72); line-height: 1.9; margin-bottom: 70px; }
+        .legend-list { display: flex; flex-direction: column; }
+        .legend-item { width: 100%; background: transparent; border: none; border-top: 1px solid rgba(179, 146, 88, 0.25); color: var(--text-light); padding: 34px 0; display: grid; grid-template-columns: 70px 1fr 40px; align-items: center; text-align: left; cursor: pointer; transition: var(--transition); }
+        .legend-item:last-child { border-bottom: 1px solid rgba(179, 146, 88, 0.25); }
+        .legend-item span { font-family: var(--font-serif); color: var(--gold); }
+        .legend-item h3 { font-family: var(--font-serif); font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 400; text-transform: uppercase; }
+        .legend-item p { color: rgba(245, 240, 230, 0.65); margin-top: 8px; }
+        .legend-item strong { color: var(--gold); font-size: 1.5rem; transition: var(--transition); }
+        .legend-item:hover { padding-left: 18px; background: rgba(179, 146, 88, 0.04); }
+        .legend-item:hover strong { transform: translateX(6px); }
+        
         /* --- 6. FOOTER --- */
         footer { background-color: #050505; border-top: 1px solid rgba(179, 146, 88, 0.2); padding: 60px 20px 20px 20px; font-size: 12px; color: #888; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr; gap: 40px; margin-bottom: 40px; }
@@ -393,7 +412,7 @@
         <div class="category-card cat-2">
             <h3>Leyendas de la Sierra</h3>
             <div class="cat-subtitle">Sirenas y susurros en la niebla.</div>
-            <button class="btn-gold" onclick="abrirModal('leyendas', event)">Ver más</button>
+            <button class="btn-gold" onclick="document.getElementById('susurros-sierra').scrollIntoView({behavior:'smooth'});">SEGUIR DESCUBRIENDO</button>
         </div>
         <div class="category-card cat-3">
             <h3>Nuestro Café</h3>
@@ -403,7 +422,7 @@
         <div class="category-card cat-4">
             <h3>El Significado del Logo</h3>
             <div class="cat-subtitle">Cada elemento cuenta una historia.</div>
-            <button class="btn-gold" onclick="abrirModal('logo', event)">Ver más</button>
+            <button class="btn-gold" onclick="document.getElementById('susurros-sierra').scrollIntoView({behavior:'smooth'});">SEGUIR DESCUBRIENDO</button>
         </div>
         <div class="category-card cat-5" style="text-align: center; justify-content: center;">
             <img src="https://via.placeholder.com/100x150/000000/b39258?text=Café" alt="Empaque" style="width: 100px; margin: 0 auto 15px auto;">
@@ -412,7 +431,72 @@
             <button class="btn-gold" style="align-self: center;" onclick="abrirModal('tienda', event)">Ver tienda</button>
         </div>
     </section>
+    <section class="sierra-whispers reveal" id="susurros-sierra">
+    <div class="whispers-content">
+        <span class="section-label">GABINA DE LA SIERRA</span>
+        <h2>SUSURROS DE LA SIERRA</h2>
+        <p>
+            Dicen que las montañas guardan historias<br>
+            que solo se cuentan cuando el café está servido.
+        </p>
+        <button class="btn-gold" onclick="document.getElementById('leyendas-lista').scrollIntoView({behavior:'smooth'});">
+            SEGUIR DESCUBRIENDO
+        </button>
+    </div>
+</section>
 
+<section class="legends-index reveal" id="leyendas-lista">
+    <div class="legends-content">
+        <span class="section-label">LEYENDAS DE LA SIERRA</span>
+        <h2>Elige cuál deseas escuchar primero</h2>
+        <p class="legends-intro">
+            Las historias que estás por leer forman parte de la tradición oral de Citlaltépetl
+            y la Sierra de Otontepec. Algunas han cambiado con el tiempo.
+            Otras siguen contándose exactamente igual.
+        </p>
+
+        <div class="legend-list">
+            <button class="legend-item" onclick="abrirModal('tlapanimichi', event)">
+                <span>01</span>
+                <div>
+                    <h3>Tlapanimichi</h3>
+                    <p>La Sirena de la Cascada</p>
+                </div>
+                <strong>→</strong>
+            </button>
+
+            <button class="legend-item" onclick="abrirModal('tepas', event)">
+                <span>02</span>
+                <div><h3>Las Tepas</h3></div>
+                <strong>→</strong>
+            </button>
+
+            <button class="legend-item" onclick="abrirModal('tesoros', event)">
+                <span>03</span>
+                <div><h3>Los Tesoros que Llaman</h3></div>
+                <strong>→</strong>
+            </button>
+
+            <button class="legend-item" onclick="abrirModal('nahuales', event)">
+                <span>04</span>
+                <div><h3>Los Nahuales</h3></div>
+                <strong>→</strong>
+            </button>
+
+            <button class="legend-item" onclick="abrirModal('brujas', event)">
+                <span>05</span>
+                <div><h3>Las Brujas de la Noche</h3></div>
+                <strong>→</strong>
+            </button>
+
+            <button class="legend-item" onclick="abrirModal('rio', event)">
+                <span>06</span>
+                <div><h3>El Río Después del Anochecer</h3></div>
+                <strong>→</strong>
+            </button>
+        </div>
+    </div>
+</section>
     <footer>
         <div class="footer-container reveal">
             <div class="footer-brand">
@@ -550,6 +634,42 @@
                 text: "Escribe aquí las leyendas de las sirenas, los tepas y las historias tradicionales de tu región.", 
                 icon: "fa-cloud-moon" 
             },
+tlapanimichi: {
+    title: "Tlapanimichi",
+    icon: "fa-water",
+    text: "Dicen que entre las aguas escondidas de la Sierra vive Tlapanimichi, una sirena que no se deja ver por cualquiera.<br><br>Algunos cuentan que aparece cerca de las cascadas, cuando la tarde comienza a caer y el sonido del agua se mezcla con el canto de los pájaros.<br><br>Quienes aseguran haberla escuchado dicen que su voz no parece venir de un solo lugar, sino de toda la montaña."
+},
+
+tepas: {
+    title: "Las Tepas",
+    icon: "fa-cloud-moon",
+    text: "Hay quienes cuentan que, en ciertos caminos de la Sierra, aparecen figuras extrañas cuando la noche ya está avanzada.<br><br>Las llaman Las Tepas."
+},
+
+tesoros: {
+    title: "Los Tesoros que Llaman",
+    icon: "fa-gem",
+    text: "En la Sierra se dice que algunos tesoros no esperan ser encontrados: llaman.<br><br>Aparecen como luces pequeñas entre el monte."
+},
+
+nahuales: {
+    title: "Los Nahuales",
+    icon: "fa-paw",
+    text: "Desde hace generaciones se habla de personas capaces de cambiar de forma cuando cae la noche."
+},
+
+brujas: {
+    title: "Las Brujas de la Noche",
+    icon: "fa-moon",
+    text: "En las noches más oscuras, cuando el viento cruza los techos y los perros ladran sin razón, hay quienes recuerdan las historias de las brujas."
+},
+
+rio: {
+    title: "El Río Después del Anochecer",
+    icon: "fa-water",
+    text: "Durante el día, el río parece tranquilo. Pero cuando oscurece, algunos dicen que su sonido cambia."
+},
+        
             cafe: { 
                 title: "Nuestro Proceso", 
                 text: "Detalla aquí tu proceso de cultivo, recolección y el tradicional tostado a leña.", 
