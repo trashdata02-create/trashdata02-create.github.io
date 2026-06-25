@@ -187,7 +187,7 @@
         .category-card { position: relative; height: 380px; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 20px; border-right: 1px solid rgba(179, 146, 88, 0.15); overflow: hidden; }
         .category-card:last-child { border-right: none; }
         
-        .cat-1 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=500') center/cover; }
+        .cat-1 { background-image: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.88)), url('taza-peltre-gabina.png'); }
         .cat-2 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500') center/cover; }
         .cat-3 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500') center/cover; }
         .cat-4 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500') center/cover; }
@@ -241,7 +241,11 @@
         .story-button:hover { background: var(--gold); color: var(--bg-dark); }
         .modal-content h3 { font-family: var(--font-serif); color: var(--gold); margin-bottom: 15px; font-size: 22px; text-align: center;}
         .modal-content p { color: #ccc; font-size: 13px; margin-bottom: 25px; line-height: 1.8; }
-
+        .esencia-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; margin-top:20px; }
+        .esencia-card{ background:rgba(255,255,255,.04); border:1px solid rgba(179,146,88,.35); border-radius:14px; padding:24px; }
+        .esencia-card h3{ color:var(--gold); font-family:var(--font-serif); text-align:center; margin-bottom:18px; }
+        .esencia-card p{ color:#ddd; text-align:justify; line-height:1.8; }
+        
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .features-container, .categories-grid, .footer-container { grid-template-columns: 1fr; }
@@ -378,10 +382,13 @@
     </section>
 
     <section id="categorias" class="categories-grid reveal">
-        <div class="category-card cat-1">
-            <h3>La Sierra de Otontepec</h3>
-            <div class="cat-subtitle">Montañas, niebla y naturaleza.</div>
-            <button class="btn-gold" onclick="abrirModal('sierra', event)">Ver más</button>
+        <div class="category-card cat-1 mas-cafe-card">
+              <h3>Más que Café</h3>
+        <div class="cat-subtitle">
+                Hay historias que se cuentan con palabras.<br>
+                Otras comienzan con una taza.
+        </div>
+              <button class="btn-gold" onclick="abrirModal('esencia', event)">DESCUBRIR NUESTRA ESENCIA</button>
         </div>
         <div class="category-card cat-2">
             <h3>Leyendas de la Sierra</h3>
@@ -493,6 +500,37 @@
         // 4. AQUÍ DEBES PONER TU INFORMACIÓN REAL (LOS DATOS DE LA VENTANA MODAL)
         // =====================================================================
         const modalContentData = {
+            esencia: { 
+                title: "Más que Café", 
+                icon: "fa-mug-hot", 
+                text: `
+                <p style="text-align:center; color:#dccbb5; font-family:var(--font-serif); font-size:15px; line-height:1.8; margin-bottom:25px;">
+                    <span style="font-size:18px; letter-spacing:2px;">Más que café...</span><br>
+                    Queremos regalarte un momento para ti.
+                </p>
+                <div class="esencia-grid">
+                <div class="esencia-card">
+                    <h3>Nuestra esencia</h3>
+                    <p>
+                        Gabina de la Sierra nació para demostrar que una taza de café puede guardar mucho más que aroma y sabor.
+                    </p>
+                    <p>
+                        Más que elaborar café artesanal, buscamos preservar las historias, las tradiciones y el trabajo de nuestra tierra, para que en cada taza perdure el legado de quienes la hicieron posible.
+                    </p>
+                </div>
+
+                <div class="esencia-card">
+                    <h3>Hacia dónde vamos</h3>
+                    <p>
+                        Queremos que cada persona que pruebe nuestro café encuentre un momento para sí misma.
+                    </p>
+                    <p>
+                        Que mientras disfruta su taza pueda desconectarse por unos minutos del ritmo cotidiano y dejarse llevar por las historias y leyendas de la Sierra. Porque creemos que una buena taza de café también puede ser un viaje.
+                    </p>
+                </div>
+                </div>
+                `
+            },
             tienda: { 
                 title: "Nuestra Tienda", 
                 text: "Aquí podrás agregar el enlace a tu futura tienda en línea o WhatsApp para hacer pedidos.", 
