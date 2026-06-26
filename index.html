@@ -212,6 +212,12 @@
         .legends-description p{ color:rgba(245,240,230,.78); font-size:15px; line-height:2; text-align:justify; margin-bottom:20px; }
         
         /* --- 6. FOOTER --- */
+        .legends-ending{ max-width:850px; margin:120px auto 100px; padding-top:80px; border-top:1px solid rgba(179,146,88,.25); text-align:center; }
+        .legends-ending h3{ font-family:var(--font-serif); color:var(--gold); font-size:30px; font-weight:400; letter-spacing:4px; margin-bottom:22px; }
+        .legends-ending .diamond{ color:var(--gold); font-size:18px; margin-bottom:35px; }
+        .legends-ending p{ max-width:760px; margin:0 auto 22px; text-align:justify; color:rgba(245,240,230,.78); line-height:2; font-size:15px; }
+        .ending-quote{ margin-top:45px !important; text-align:center !important; font-family:var(--font-serif); color:var(--beige) !important; font-size:20px !important; line-height:1.8; letter-spacing:1px; }
+        .coming-soon{ text-align:center; font-family:var(--font-serif); color:rgba(245,240,230,.55); text-transform:uppercase; letter-spacing:4px; font-size:12px; margin-top:0; }
         .footer { background-color: #050505; border-top: 1px solid rgba(179, 146, 88, 0.2); padding: 60px 20px 20px 20px; font-size: 12px; color: #888; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr; gap: 40px; margin-bottom: 40px; }
         .footer-brand h3 { font-family: var(--font-serif); color: var(--gold); font-size: 18px; }
@@ -232,9 +238,14 @@
 
         #modalText{ text-align: justify; text-justify: inter-word; line-height: 2.1; color: rgba(245,240,230,.85); font-size: 16px; margin-top: 30px; }
         #modalTitle{font-family: var(--font-serif); font-size: 2.8rem; letter-spacing: 2px; color: var(--gold); margin-bottom: 30px; }
-        .modal-divider{ display:flex; justify-content:center; align-items:center; gap:18px; margin:15px 0 35px; color:var(--gold); font-size:16px; }
+        .modal-divider,
+        .legends-ending .diamond{ display:flex; justify-content:center; align-items:center; gap:18px; color:var(--gold); }
+        .modal-divider{ margin:15px 0 35px;}
+        .legends-ending .diamond{ margin:35px 0 40px; }
         .modal-divider::before,
-        .modal-divider::after{ content:""; width:120px; height:1px; background:rgba(179,146,88,.35); }
+        .modal-divider::after,
+        .legends-ending .diamond::before,
+        .legends-ending .diamond::after{ content:""; width:120px; height:1px; background:rgba(179,146,88,.35); }
         
         /* --- VENTANA MODAL --- */
         .modal-overlay {
@@ -498,6 +509,30 @@
             </button>
         </div>
     </div>
+<div class="legends-ending reveal">
+    <h3>ESTE ES SOLO EL COMIENZO</h3>
+    <div class="diamond">✦</div>
+    <p>
+        Las historias aquí reunidas son solo una pequeña parte de la tradición oral de Citlaltépetl.
+    </p>
+    <p>
+        Aún existen relatos que permanecen en la memoria de sus habitantes, anécdotas compartidas entre familias y leyendas que continúan contándose al caer la tarde o durante las reuniones de comunidad.
+    </p>
+    <p>
+        Con el tiempo seguiremos recopilando nuevas historias para preservarlas y compartirlas con quienes deseen conocer este rincón de Veracruz.
+    </p>
+    <p>
+        Si conoces alguna leyenda, recuerdo o relato tradicional de la región, nos encantará escucharlo.
+    </p>
+    <p class="ending-quote">
+        Porque mientras haya alguien dispuesto a contar una historia,
+        la memoria de un pueblo seguirá viva.
+    </p>
+    <div class="diamond">✦</div>
+    <p class="coming-soon">
+    LA SIERRA TODAVÍA TIENE MUCHO QUE CONTAR.
+    </p>
+</div>
 </section>
     <footer class="footer">
         <div class="footer-container reveal">
