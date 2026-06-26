@@ -119,24 +119,8 @@
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
         /* --- 2. HERO SECTION --- */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 650px;
-            background: linear-gradient(to right, rgba(0,0,0,0.75) 38%, rgba(0,0,0,0.18)), url('PORTADA WEB.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            display: flex;
-            align-items: flex-start;
-            padding-top: 80px;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto; width: 100%; padding: 0 50px;
-        }
-
+        .hero { position: relative; height: 100vh; min-height: 650px; background: linear-gradient(to right, rgba(0,0,0,0.75) 38%, rgba(0,0,0,0.18)), url('PORTADA WEB.png'); background-size: cover; background-position: center center; background-repeat: no-repeat; display: flex; align-items: flex-start; padding-top: 80px; }
+        .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 50px; }
         .hero-brand { max-width: 420px; text-align: center; display: flex; flex-direction: column; align-items: center; }
         .main-logo { width: 235px; margin-bottom: 12px; filter: drop-shadow(0px 0px 8px rgba(0,0,0,0.7)); display: block; }
         
@@ -209,17 +193,26 @@
         .legends-intro .legends-intro { max-width: 760px; color: rgba(245, 240, 230, 0.72); line-height: 1.9; margin-bottom: 22px; }
         .legends-intro:last-of-type { margin-bottom: 70px; }
         .legend-list { display: flex; flex-direction: column; }
-        .legend-item { width: 100%; background: transparent; border: none; border-top: 1px solid rgba(179, 146, 88, 0.25); color: var(--text-light); padding: 34px 0; display: grid; grid-template-columns: 70px 1fr 40px; align-items: center; text-align: left; cursor: pointer; transition: var(--transition); }
+        .legend-item { width: 100%; background: transparent; border: none; border-top: 1px solid rgba(179, 146, 88, 0.25); color: var(--text-light); padding: 42px 0; display: grid; grid-template-columns: 70px 1fr 40px; align-items: center; text-align: left; cursor: pointer; transition: var(--transition); }
         .legend-item:last-child { border-bottom: 1px solid rgba(179, 146, 88, 0.25); }
         .legend-item span { font-family: var(--font-serif); color: var(--gold); }
-        .legend-item h3 { font-family: var(--font-serif); font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 400; text-transform: uppercase; }
+        .legend-item h3 { font-family: var(--font-serif); font-size:clamp(1.6rem,3vw,2.2rem); letter-spacing:1px; font-weight: 400; text-transform: uppercase; }
         .legend-item p { color: rgba(245, 240, 230, 0.65); margin-top: 8px; }
         .legend-item strong { color: var(--gold); font-size: 1.5rem; transition: var(--transition); }
         .legend-item:hover { padding-left: 18px; background: rgba(179, 146, 88, 0.04); }
         .legend-item:hover strong { transform: translateX(6px); }
+        .legend-item:hover { padding-left: 18px; background: rgba(179, 146, 88, 0.04); }
+        .legend-item:hover strong { transform: translateX(6px); }
+
+        /*========================== SUSURROS DE LA SIERRA ==========================*/
+
+        .legends-overline{ text-align:center; color:var(--gold); font-family:var(--font-serif); font-size:14px; letter-spacing:6px; text-transform:uppercase; margin-bottom:18px; }
+        .legends-title{ font-family:var(--font-serif); font-size:clamp(1.9rem,3vw,2.7rem); font-weight:400; text-align:center; letter-spacing:4px; color:var(--text-light); margin-bottom:45px; text-transform:uppercase; }
+        .legends-description{ max-width:860px; margin:0 auto 80px auto; }
+        .legends-description p{ color:rgba(245,240,230,.78); font-size:15px; line-height:2; text-align:justify; margin-bottom:20px; }
         
         /* --- 6. FOOTER --- */
-        footer { background-color: #050505; border-top: 1px solid rgba(179, 146, 88, 0.2); padding: 60px 20px 20px 20px; font-size: 12px; color: #888; }
+        .footer { background-color: #050505; border-top: 1px solid rgba(179, 146, 88, 0.2); padding: 60px 20px 20px 20px; font-size: 12px; color: #888; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr; gap: 40px; margin-bottom: 40px; }
         .footer-brand h3 { font-family: var(--font-serif); color: var(--gold); font-size: 18px; }
         .social-icons a { font-size: 18px; margin-right: 15px; color: var(--text-light); }
@@ -454,28 +447,29 @@
 
 <section class="legends-index reveal" id="leyendas-lista">
     <div class="legends-content">
-        <span class="section-label">SUSURROS DE LA SIERRA</span>
-        <h2>Elige cuál deseas leer primero</h2>
-
-        <p class="legends-intro">
-            Las historias que estás por leer forman parte de la tradición oral de Citlaltépetl
-            y la Sierra de Otontepec. Han sido transmitidas de generación en generación por
-            los habitantes de la región, conservándose en la memoria colectiva como parte de
-            su riqueza cultural.
+         <p class="legends-overline">SUSURROS DE LA SIERRA</p>
+        <h2 class="legends-title">ELIGE CUÁL DESEAS LEER PRIMERO</h2>
+    <div class="legends-description">
+        <p>
+            Las historias que estás por leer forman parte de la tradición oral de
+            Citlaltépetl y la Sierra de Otontepec. Han sido transmitidas de generación
+            en generación por los habitantes de la región, conservándose en la memoria
+            colectiva como parte de su riqueza cultural.
         </p>
 
-        <p class="legends-intro">
-            No pretenden narrar hechos históricos ni documentar acontecimientos verificables.
-            Su propósito es preservar los relatos, las creencias y las leyendas que, durante
-            siglos, han acompañado la vida de quienes habitan estas montañas.
+        <p>
+            No pretenden narrar hechos históricos ni documentar acontecimientos
+            verificables. Su propósito es preservar los relatos, las creencias y las
+            leyendas que, durante siglos, han acompañado la vida de quienes habitan
+            estas montañas.
         </p>
 
-        <p class="legends-intro">
-            Cada historia es un reflejo de la imaginación, la identidad y el patrimonio
-            intangible de una comunidad que aún encuentra en la palabra contada una forma de
-            mantener viva su memoria.
+        <p>
+            Cada historia es un reflejo de la imaginación, la identidad y el
+            patrimonio intangible de una comunidad que aún encuentra en la palabra
+            contada una forma de mantener viva su memoria.
         </p>
-
+    </div>
         <div class="legend-list">
             <button class="legend-item" onclick="abrirModal('tlapanimichi', event)">
                 <span>01</span>
