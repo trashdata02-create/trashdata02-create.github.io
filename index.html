@@ -206,8 +206,8 @@
 
         /*========================== SUSURROS DE LA SIERRA ==========================*/
 
-        .legends-overline{ text-align:center; color:var(--gold); font-family:var(--font-serif); font-size:14px; letter-spacing:6px; text-transform:uppercase; margin-bottom:18px; }
-        .legends-title{ font-family:var(--font-serif); font-size:clamp(1.9rem,3vw,2.7rem); font-weight:400; text-align:center; letter-spacing:4px; color:var(--text-light); margin-bottom:45px; text-transform:uppercase; }
+        .legends-overline{ text-align:center; color:var(--gold); font-family:var(--font-serif); font-size:22px; letter-spacing:8px; text-transform:uppercase; margin-bottom:28px; }
+        .legends-title{ font-family:var(--font-serif); font-size:clamp(1.6rem,2vw,2rem); font-weight:400; text-align:center; letter-spacing:2px; color:var(--text-light); margin-bottom:55px; text-transform:uppercase; white-space:nowrap; }
         .legends-description{ max-width:860px; margin:0 auto 80px auto; }
         .legends-description p{ color:rgba(245,240,230,.78); font-size:15px; line-height:2; text-align:justify; margin-bottom:20px; }
         
@@ -230,6 +230,12 @@
 
         .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid #111; padding-top: 20px; display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; }
 
+        #modalText{ text-align: justify; text-justify: inter-word; line-height: 2.1; color: rgba(245,240,230,.85); font-size: 16px; margin-top: 30px; }
+        #modalTitle{font-family: var(--font-serif); font-size: 2.8rem; letter-spacing: 2px; color: var(--gold); margin-bottom: 30px; }
+        .modal-divider{ display:flex; justify-content:center; align-items:center; gap:18px; margin:15px 0 35px; color:var(--gold); font-size:16px; }
+        .modal-divider::before,
+        .modal-divider::after{ content:""; width:120px; height:1px; background:rgba(179,146,88,.35); }
+        
         /* --- VENTANA MODAL --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -409,7 +415,7 @@
         Dicen que las montañas guardan historias.<br>
         Solo esperan a quien quiera escucharlas.
             </div>
-            <button class="btn-gold" onclick="cerrarModal()">">SEGUIR DESCUBRIENDO</button>
+            <button class="btn-gold" onclick="document.getElementById('leyendas-lista').scrollIntoView({behavior:'smooth'});">SEGUIR DESCUBRIENDO</button>
         </div>
         <div class="category-card cat-3">
             <h3>Nuestro Café</h3>
@@ -457,7 +463,7 @@
         <div class="legend-list">
             <button class="legend-item" onclick="abrirModal('tlapanimichi', event)">
                 <span>01</span>
-                <div><h3>La Sirena de la Cascada</h3></div>
+                <div><h3>La Sirena que Habitaba la Cascada</h3></div>
                 <strong>→</strong>
             </button>
 
@@ -493,7 +499,7 @@
         </div>
     </div>
 </section>
-    <footer>
+    <footer class="footer">
         <div class="footer-container reveal">
             <div class="footer-brand">
                 <h3>GABINA DE LA SIERRA</h3>
@@ -526,10 +532,10 @@
 
     <div id="interactiveModal" class="modal-overlay">
         <div class="modal-content">
-            <i id="modalIcon" class="fa-solid fa-mug-hot" style="font-size: 40px; color: var(--gold); margin-bottom: 20px;"></i>
-            <h3 id="modalTitle">Próximamente</h3>
-            <p id="modalText">Esta sección estará disponible muy pronto.</p>
-            <button class="btn-gold" onclick="cerrarModal()">SEGUIR EXPLORANDO</button>
+                <h3 id="modalTitle">Próximamente</h3>
+        <div class="modal-divider">✦</div>
+                <p id="modalText">Esta sección estará disponible muy pronto.</p>
+            <button class="btn-gold" onclick="cerrarModal()">SEGUIR DESCUBRIENDO</button>
         </div>
     </div>
 
@@ -630,39 +636,39 @@
                 icon: "fa-cloud-moon" 
             },
 tlapanimichi: {
-    title: "Tlapanimichi",
-    icon: "fa-water",
-    text: "Dicen que entre las aguas escondidas de la Sierra vive Tlapanimichi, una sirena que no se deja ver por cualquiera.<br><br>Algunos cuentan que aparece cerca de las cascadas, cuando la tarde comienza a caer y el sonido del agua se mezcla con el canto de los pájaros.<br><br>Quienes aseguran haberla escuchado dicen que su voz no parece venir de un solo lugar, sino de toda la montaña."
+    title: "La Sirena que Habitaba la Cascada",
+    icon: "",
+    text: "Entre las cascadas y pozas de Tlapanimichi se conserva una de las leyendas más conocidas de la región.<br><br>Los habitantes más antiguos cuentan que, hace muchos años, una sirena habitaba aquellas aguas cristalinas.<br><br>Durante ese tiempo, la pesca era abundante. Los ríos y arroyos proporcionaban alimento en cantidad y nunca faltaba algo que llevar a la mesa. La naturaleza parecía ofrecer generosamente sus recursos a quienes vivían cerca de ella.<br><br>Pero un día la sirena desapareció.<br><br>Nadie sabe con certeza qué ocurrió. Algunos dicen que decidió marcharse. Otros creen que fue alejada de su hogar por causas que el tiempo terminó por borrar de la memoria.<br><br>Lo cierto es que, según la tradición, después de su partida la abundancia comenzó a disminuir.<br><br>Desde entonces, muchas personas creen que la sirena no solo habitaba la cascada, sino que también protegía la riqueza natural de la región, manteniendo el equilibrio entre sus aguas y quienes dependían de ellas.<br><br>Todavía hoy, cuando la niebla cubre las piedras y el sonido del agua domina el paisaje, hay quienes aseguran que ese lugar conserva algo especial.<br><br>Y aunque nadie ha vuelto a verla, su historia sigue viva entre quienes crecieron escuchándola, recordando que algunas leyendas permanecen mucho después de que sus protagonistas han desaparecido."
 },
 
 tepas: {
     title: "Las Tepas",
-    icon: "fa-cloud-moon",
-    text: "Hay quienes cuentan que, en ciertos caminos de la Sierra, aparecen figuras extrañas cuando la noche ya está avanzada.<br><br>Las llaman Las Tepas."
+    icon: "",
+    text: "Entre las historias más inquietantes de Citlaltépetl se encuentra la de las Tepas.<br><br>Quienes afirman haberlas visto las describen como mujeres de extraordinaria belleza que aparecen entre los caminos y senderos de la montaña, especialmente cuando la neblina comienza a cubrir los cerros y el silencio domina el paisaje.<br><br>Sin embargo, otros cuentan algo aún más extraño: nunca llegan a verlas.<br><br>Solo escuchan una voz.<br><br>Una voz amable, suave y difícil de ignorar, que parece surgir desde algún lugar entre la vegetación e invita a seguirla sin despertar sospechas.<br><br>Dicen que algunas personas terminan caminando tras ella sin darse cuenta, internándose cada vez más en zonas apartadas de la montaña.<br><br>Los relatos aseguran que algunos viajeros han aparecido horas después al otro lado de la sierra, sin recordar con claridad cómo llegaron hasta allí ni el camino que siguieron.<br><br>Y aunque regresan a casa, quienes narran estas historias afirman que nunca vuelven exactamente iguales.<br><br>Nadie sabe qué ocurre durante el tiempo que permanecen perdidos ni qué es lo que encuentran en su recorrido. Ese misterio es, precisamente, lo que ha mantenido viva la leyenda durante generaciones.<br><br>Por eso, incluso hoy, hay quienes prefieren no seguir voces desconocidas cuando recorren solos los caminos envueltos por la neblina."
 },
 
 tesoros: {
     title: "Los Tesoros que Llaman",
-    icon: "fa-gem",
-    text: "En la Sierra se dice que algunos tesoros no esperan ser encontrados: llaman.<br><br>Aparecen como luces pequeñas entre el monte."
+     icon: "",
+    text: "Durante la Revolución Mexicana, muchas familias ocultaron sus pertenencias en distintos puntos de la región. Oro, monedas, joyas y otros objetos de valor fueron enterrados con la esperanza de recuperarlos cuando terminara la incertidumbre.<br><br>Sin embargo, cuentan que no todos esos tesoros volvieron a ser encontrados.<br><br>Los habitantes más antiguos dicen que los tesoros eligen a quién llamar.<br><br>No cualquiera puede encontrarlos. Cientos de personas pueden caminar por el mismo lugar sin notar nada. Pero cuando el llamado llega, algo cambia.<br><br>Algunos hablan de sueños repetitivos. Otros describen una sensación difícil de explicar que los impulsa a buscar en un sitio específico, como si una fuerza silenciosa los guiara hacia un lugar que nunca habían visto y que, al mismo tiempo, les resultara familiar.<br><br>Lo más extraño es que quienes siguen ese llamado aseguran que el camino se vuelve mucho más difícil de lo normal. Senderos cortos parecen interminables y distancias pequeñas se transforman en largas jornadas de búsqueda.<br><br>Existe además una advertencia transmitida de generación en generación: si el tesoro es encontrado, debe compartirse.<br><br>Porque quienes intentan quedarse con todo para sí mismos corren el riesgo de perder algo mucho más valioso que el oro.<br><br>Nadie sabe con certeza qué hay de verdad en estos relatos. Pero aún hoy, cuando alguien habla de riquezas ocultas entre los montes de la región, muchos escuchan con atención... y también con respeto.<br><br>Quizá porque, según la tradición, los tesoros enterrados no esperan ser encontrados por cualquiera. Esperan a la persona correcta."
 },
 
 nahuales: {
     title: "Los Nahuales",
-    icon: "fa-paw",
-    text: "Desde hace generaciones se habla de personas capaces de cambiar de forma cuando cae la noche."
+    icon: "",
+    text: "Cuando se habla de nahuales, muchas personas imaginan criaturas peligrosas o presencias oscuras.<br><br>Sin embargo, en Citlaltépetl las historias no siempre los presentan de esa manera.<br><br>Los mayores cuentan que algunos nahuales ayudan a los viajeros a llegar con bien a su destino. Otros simplemente recorren los caminos sin molestar a nadie, como si vigilaran discretamente la región desde las sombras de la montaña.<br><br>Las leyendas aseguran que ciertas personas poseen la capacidad de transformarse en distintos animales, una habilidad transmitida y resguardada por generaciones.<br><br>Por eso existe la creencia de que cualquiera podría cruzarse con uno sin darse cuenta.<br><br>Un perro que observa demasiado.<br><br>Un ave que aparece en el momento menos esperado.<br><br>O un animal que parece conocer perfectamente senderos y rincones donde nadie más debería encontrarse.<br><br>Los más viejos recomiendan respeto.<br><br>No perseguir.<br><br>No provocar.<br><br>Y no intentar descubrir quién se encuentra detrás de ciertas apariencias.<br><br>Porque, según cuentan, no todos los nahuales buscan hacer daño.<br><br>Algunos simplemente siguen recorriendo los caminos, los montes y los cafetales que han conocido durante toda su vida, formando parte de los misterios que aún habitan la sierra.<br><br>Y quizá por eso, cuando un animal aparece donde menos se espera y observa por un instante más de lo normal, todavía hay quienes se preguntan si realmente están solos."
 },
 
 brujas: {
     title: "Las Brujas de la Noche",
-    icon: "fa-moon",
-    text: "En las noches más oscuras, cuando el viento cruza los techos y los perros ladran sin razón, hay quienes recuerdan las historias de las brujas."
+    icon: "",
+    text: "Cuando cae la noche sobre Citlaltépetl y los caminos quedan envueltos por la oscuridad, comienzan a surgir algunas de las historias más antiguas del pueblo.<br><br>Durante generaciones se ha hablado de extrañas luces que recorren los cerros y sobrevuelan los árboles en silencio.<br><br>Algunas personas las describen como bolas de fuego suspendidas en el aire.<br><br>Otras aseguran haberlas visto cruzar sobre los techos de las casas, desplazarse entre los cafetales o perderse entre las montañas antes del amanecer.<br><br>Los relatos afirman que esas luces pertenecen a brujas que recorren la región durante la noche.<br><br>Nadie sabe exactamente qué buscan.<br><br>Nadie sabe hacia dónde se dirigen.<br><br>Pero la historia ha sobrevivido al paso del tiempo y continúa siendo contada por quienes crecieron escuchándola.<br><br>Todavía hoy, cuando una luz extraña aparece entre la oscuridad o se mueve donde no debería haber nadie, muchos recuerdan aquellas viejas advertencias y prefieren observar desde lejos.<br><br>Porque en los caminos de la sierra hay cosas que, según dicen los mayores, es mejor contemplar con respeto que intentar comprender."
 },
 
 rio: {
     title: "El Río Después del Anochecer",
-    icon: "fa-water",
-    text: "Durante el día, el río parece tranquilo. Pero cuando oscurece, algunos dicen que su sonido cambia."
+    icon: "",
+    text: "Existe una recomendación que muchos habitantes de Citlaltépetl han escuchado desde pequeños:<br><br>No cruzar el río durante la noche.<br><br>El agua que desciende desde las cascadas forma parte de la vida cotidiana del pueblo y ha acompañado a la región durante generaciones.<br><br>Durante el día parece un lugar tranquilo. El sonido de la corriente se mezcla con la vegetación y los senderos que recorren la sierra.<br><br>Pero cuando llega la oscuridad, las historias comienzan.<br><br>Algunos aseguran haber escuchado voces donde no había nadie.<br><br>Otros dicen haber visto figuras observando desde la orilla.<br><br>Y hay quienes simplemente describen una sensación extraña, difícil de explicar, como si algo compartiera la noche con el río.<br><br>Quizá sean únicamente relatos transmitidos de generación en generación.<br><br>Quizá sea el sonido del agua mezclado con la oscuridad y la imaginación.<br><br>O quizá existan cosas que pertenecen a la noche y que es mejor dejar tranquilas.<br><br>Lo cierto es que, todavía hoy, muchas personas prefieren esperar al amanecer antes de cruzar el río.<br><br>Porque en Citlaltépetl hay lugares que, según la tradición, merecen el mismo respeto de día que de noche."
 },
         
             cafe: { 
@@ -680,21 +686,15 @@ rio: {
         const modal = document.getElementById('interactiveModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalText = document.getElementById('modalText');
-        const modalIcon = document.getElementById('modalIcon');
-
+        
         function abrirModal(tipo, evento) {
             if(evento) evento.preventDefault();
             const data = modalContentData[tipo];
             if(data) {
                 modalTitle.innerText = data.title;
                 modalText.innerHTML = data.text;
-                modalIcon.className = `fa-solid ${data.icon}`;
             }
             modal.classList.add('active');
-        }
-
-        function cerrarModal() {
-            modal.classList.remove('active');
         }
 
         function cerrarModal() {
@@ -707,7 +707,6 @@ rio: {
             const email = document.getElementById('emailInput').value;
             modalTitle.innerText = "¡Gracias por suscribirte!";
             modalText.innerText = `Hemos registrado el correo: ${email}. Pronto recibirás historias de la Sierra.`;
-            modalIcon.className = "fa-solid fa-envelope-open-text";
             modal.classList.add('active');
             document.getElementById('emailInput').value = '';
         }
