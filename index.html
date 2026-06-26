@@ -248,7 +248,7 @@
         
         .close-modal {
             position: absolute; top: 15px; right: 20px; font-size: 24px;
-            color: var(--gold); cursor: pointer; background: transparent; border: none;
+            color: var(--gold); cursor: pointer; background: transparent; border: none; display: none;
         }
         .story-button { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 10px 18px; font-family: var(--font-serif); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;transition: var(--transition); }
         .story-button:hover { background: var(--gold); color: var(--bg-dark); }
@@ -526,11 +526,10 @@
 
     <div id="interactiveModal" class="modal-overlay">
         <div class="modal-content">
-            <button class="close-modal" onclick="cerrarModal()">×</button>
             <i id="modalIcon" class="fa-solid fa-mug-hot" style="font-size: 40px; color: var(--gold); margin-bottom: 20px;"></i>
             <h3 id="modalTitle">Próximamente</h3>
             <p id="modalText">Esta sección estará disponible muy pronto.</p>
-            <button class="btn-gold" onclick="document.getElementById('leyendas-lista').scrollIntoView({behavior:'smooth'});">SEGUIR DESCUBRIENDO</button>
+            <button class="btn-gold" onclick="cerrarModal()">SEGUIR EXPLORANDO</button>
         </div>
     </div>
 
@@ -698,9 +697,9 @@ rio: {
             modal.classList.remove('active');
         }
 
-        modal.addEventListener('click', (e) => {
-            if(e.target === modal) cerrarModal();
-        });
+        function cerrarModal() {
+            modal.classList.remove('active');
+        }
 
         // 5. SIMULACIÓN DE SUSCRIPCIÓN
         function suscribir(evento) {
