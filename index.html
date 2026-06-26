@@ -431,19 +431,6 @@
             <button class="btn-gold" style="align-self: center;" onclick="abrirModal('tienda', event)">Ver tienda</button>
         </div>
     </section>
-    <section class="sierra-whispers reveal" id="susurros-sierra">
-    <div class="whispers-content">
-        <span class="section-label">GABINA DE LA SIERRA</span>
-        <h2>SUSURROS DE LA SIERRA</h2>
-        <p>
-            Dicen que las montañas guardan historias<br>
-            que solo se cuentan cuando el café está servido.
-        </p>
-        <button class="btn-gold" onclick="document.getElementById('leyendas-lista').scrollIntoView({behavior:'smooth'});">
-            SEGUIR DESCUBRIENDO
-        </button>
-    </div>
-</section>
 
 <section class="legends-index reveal" id="leyendas-lista">
     <div class="legends-content">
@@ -546,7 +533,7 @@
             <i id="modalIcon" class="fa-solid fa-mug-hot" style="font-size: 40px; color: var(--gold); margin-bottom: 20px;"></i>
             <h3 id="modalTitle">Próximamente</h3>
             <p id="modalText">Esta sección estará disponible muy pronto.</p>
-            <button class="btn-gold" onclick="cerrarModal()">Seguir Explorando</button>
+            <button class="btn-gold" onclick="document.getElementById('leyendas-lista').scrollIntoView({behavior:'smooth'});">SEGUIR DESCUBRIENDO</button>
         </div>
     </div>
 
