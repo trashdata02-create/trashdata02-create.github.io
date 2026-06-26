@@ -188,7 +188,7 @@
         .category-card:last-child { border-right: none; }
         
         .cat-1 { background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 42%, rgba(0,0,0,0) 100%), url('taza-peltre.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
-        .cat-2 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500') center/cover; }
+        .cat-2 { background: linear-gradient(to top, rgba(0,0,0,.88) 18%, rgba(0,0,0,.45) 48%, rgba(0,0,0,.10) 100%), url('susurros-de-la-sierra.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
         .cat-3 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500') center/cover; }
         .cat-4 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500') center/cover; }
         .cat-5 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), #121212; transition: background 0.3s; }
@@ -206,7 +206,8 @@
         .legends-index { background: #0a0a0a; padding: 110px 24px; }
         .legends-content { max-width: 950px; margin: 0 auto; }
         .legends-index h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
-        .legends-intro { max-width: 720px; color: rgba(245, 240, 230, 0.72); line-height: 1.9; margin-bottom: 70px; }
+        .legends-intro .legends-intro { max-width: 760px; color: rgba(245, 240, 230, 0.72); line-height: 1.9; margin-bottom: 22px; }
+        .legends-intro:last-of-type { margin-bottom: 70px; }
         .legend-list { display: flex; flex-direction: column; }
         .legend-item { width: 100%; background: transparent; border: none; border-top: 1px solid rgba(179, 146, 88, 0.25); color: var(--text-light); padding: 34px 0; display: grid; grid-template-columns: 70px 1fr 40px; align-items: center; text-align: left; cursor: pointer; transition: var(--transition); }
         .legend-item:last-child { border-bottom: 1px solid rgba(179, 146, 88, 0.25); }
@@ -410,9 +411,15 @@
               <button class="btn-gold" onclick="abrirModal('esencia', event)">DESCUBRIR NUESTRA ESENCIA</button>
         </div>
         <div class="category-card cat-2">
-            <h3>Leyendas de la Sierra</h3>
-            <div class="cat-subtitle">Sirenas y susurros en la niebla.</div>
-            <button class="btn-gold" onclick="document.getElementById('susurros-sierra').scrollIntoView({behavior:'smooth'});">SEGUIR DESCUBRIENDO</button>
+            <h3>Susurros de la Sierra</h3>
+             <div class="cat-subtitle">
+        Dicen que las montañas guardan historias.<br>
+        Solo esperan a quien quiera escucharlas.
+            </div>
+            <button class="btn-gold"
+        onclick="document.getElementById('susurros-sierra').scrollIntoView({behavior:'smooth'});">
+        SEGUIR DESCUBRIENDO
+        </button>
         </div>
         <div class="category-card cat-3">
             <h3>Nuestro Café</h3>
@@ -447,21 +454,32 @@
 
 <section class="legends-index reveal" id="leyendas-lista">
     <div class="legends-content">
-        <span class="section-label">LEYENDAS DE LA SIERRA</span>
-        <h2>Elige cuál deseas escuchar primero</h2>
+        <span class="section-label">SUSURROS DE LA SIERRA</span>
+        <h2>Elige cuál deseas leer primero</h2>
+
         <p class="legends-intro">
             Las historias que estás por leer forman parte de la tradición oral de Citlaltépetl
-            y la Sierra de Otontepec. Algunas han cambiado con el tiempo.
-            Otras siguen contándose exactamente igual.
+            y la Sierra de Otontepec. Han sido transmitidas de generación en generación por
+            los habitantes de la región, conservándose en la memoria colectiva como parte de
+            su riqueza cultural.
+        </p>
+
+        <p class="legends-intro">
+            No pretenden narrar hechos históricos ni documentar acontecimientos verificables.
+            Su propósito es preservar los relatos, las creencias y las leyendas que, durante
+            siglos, han acompañado la vida de quienes habitan estas montañas.
+        </p>
+
+        <p class="legends-intro">
+            Cada historia es un reflejo de la imaginación, la identidad y el patrimonio
+            intangible de una comunidad que aún encuentra en la palabra contada una forma de
+            mantener viva su memoria.
         </p>
 
         <div class="legend-list">
             <button class="legend-item" onclick="abrirModal('tlapanimichi', event)">
                 <span>01</span>
-                <div>
-                    <h3>Tlapanimichi</h3>
-                    <p>La Sirena de la Cascada</p>
-                </div>
+                <div><h3>La Sirena de la Cascada</h3></div>
                 <strong>→</strong>
             </button>
 
