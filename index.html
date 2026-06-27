@@ -204,11 +204,12 @@
         .legend-item:hover strong { transform: translateX(6px); }
         .legend-item:hover { padding-left: 18px; background: rgba(179, 146, 88, 0.04); }
         .legend-item:hover strong { transform: translateX(6px); }
-
+        .legends-ending .btn-gold{ margin-top:35px; }
+        
         /*========================== SUSURROS DE LA SIERRA ==========================*/
 
         .legends-overline{ text-align:center; color:var(--gold); font-family:var(--font-serif); font-size:18px; letter-spacing:8px; text-transform:uppercase; margin-bottom:28px; }
-        .legends-title{ font-family:var(--font-serif); font-size:18px; font-weight:400; text-align:center; letter-spacing:2px; color:var(--text-light); margin-bottom:18px; text-transform:uppercase; white-space:normal; }
+        .legends-title{ font-family:var(--font-serif); font-size:14px; font-weight:400; text-align:center; letter-spacing:1.5px; color:var(--text-light); margin-bottom:18px; text-transform:uppercase; white-space:normal; }
         .legends-description{ max-width:860px; margin:0 auto 80px auto; }
         .legends-description p{ color:rgba(245,240,230,.78); font-size:15px; line-height:2; text-align:justify; margin-bottom:20px; }
         
@@ -535,7 +536,9 @@
     <p class="coming-soon">
     LA SIERRA TODAVÍA TIENE MUCHO QUE CONTAR.
     </p>
-</div>
+    <button class="btn-gold"
+        onclick="document.getElementById('categorias').scrollIntoView({behavior:'smooth'})">SEGUIR EXPLORANDO</button>
+    </div>
 </section>
     <footer class="footer">
         <div class="footer-container reveal">
