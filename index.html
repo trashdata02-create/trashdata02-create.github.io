@@ -573,7 +573,7 @@
                 <h3 id="modalTitle">Próximamente</h3>
         <div class="modal-divider">✦</div>
                 <p id="modalText">Esta sección estará disponible muy pronto.</p>
-            <button class="btn-gold" onclick="cerrarModal()">SEGUIR DESCUBRIENDO</button>
+            <button id="modalButton" class="btn-gold" onclick="cerrarModal()">SEGUIR DESCUBRIENDO</button>
         </div>
     </div>
 
@@ -724,6 +724,7 @@ rio: {
         const modal = document.getElementById('interactiveModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalText = document.getElementById('modalText');
+        const modalButton = document.getElementById('modalButton');
         
         function abrirModal(tipo, evento) {
             if(evento) evento.preventDefault();
@@ -732,9 +733,17 @@ rio: {
                 modalTitle.innerText = data.title;
                 modalText.innerHTML = data.text;
             }
-            modal.classList.add('active');
-            document.querySelector('.modal-content').scrollTop = 0;
-        }
+            if(tipo === "historia"){
+                modalButton.textContent = "SEGUIR EXPLORANDO";
+            }else{
+                modalButton.textContent = "SEGUIR DESCUBRIENDO";
+            }
+
+                modal.classList.add('active');
+
+            setTimeout(() => {
+                document.querySelector(".modal-content").scrollTop = 0; },10);
+            }
 
         function cerrarModal() {
             modal.classList.remove('active');
