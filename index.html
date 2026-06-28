@@ -174,7 +174,7 @@
         
         .cat-1 { background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 42%, rgba(0,0,0,0) 100%), url('taza-peltre.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
         .cat-2 { background: linear-gradient(to top, rgba(0,0,0,.88) 18%, rgba(0,0,0,.45) 48%, rgba(0,0,0,.10) 100%), url('susurros-de-la-sierra.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
-        .cat-3 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500') center/cover; }
+        .cat-3 { background: linear-gradient(to top, rgba(0,0,0,0.90) 30%, rgba(0,0,0,0.15) 100%), url('cafetal.png') center center/cover no-repeat; }
         .cat-4 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500') center/cover; }
         .cat-5 { background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent), #121212; transition: background 0.3s; }
         .cat-5:hover { background-color: #1a1a1a; }
@@ -260,6 +260,11 @@
         .esencia-card{ background:rgba(255,255,255,.04); border:1px solid rgba(179,146,88,.35); border-radius:14px; padding:24px; }
         .esencia-card h3{ color:var(--gold); font-family:var(--font-serif); text-align:center; margin-bottom:18px; }
         .esencia-card p{ color:#ddd; text-align:justify; line-height:1.8; }
+        .perfil-cafe{ max-width:420px; margin:30px auto; }
+        .perfil-item{ display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(179,146,88,.20); }
+        .perfil-item:last-child{ border-bottom:none; }
+        .perfil-item span{ color:#f5f0e6; letter-spacing:1px; }
+        .perfil-item strong{ color:var(--gold); letter-spacing:3px; font-size:15px; }
         
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
@@ -312,7 +317,7 @@
                 <h1>GABINA</h1>
 
             <div class="sub-brand">
-                ♦DE LA SIERRA♦
+                ✦DE LA SIERRA✦
             </div>
 
             <div class="tagline">
@@ -434,9 +439,12 @@
         </div>
         <div class="category-card cat-3">
             <h3>Nuestro Café</h3>
-            <div class="cat-subtitle">Del campo a tu taza. Proceso y tueste.</div>
-            <button class="btn-gold" onclick="abrirModal('cafe', event)">Ver más</button>
-        </div>
+        <div class="cat-subtitle">
+        Cultivado con paciencia.<br>
+        Tostado lentamente a leña.
+            </div>
+            <button class="btn-gold" onclick="abrirModal('cafe', event)">CONOCE SU ESENCIA</button>
+            </div>
         <div class="category-card cat-4">
             <h3>El Significado del Logo</h3>
             <div class="cat-subtitle">Cada elemento cuenta una historia.</div>
@@ -713,9 +721,48 @@ rio: {
 },
         
             cafe: { 
-                title: "Nuestro Proceso", 
-                text: "Detalla aquí tu proceso de cultivo, recolección y el tradicional tostado a leña.", 
-                icon: "fa-mug-hot" 
+                title: "NUESTRO CAFÉ",
+                text: `
+                    <p>No buscamos hacer el café más fuerte ni el más caro. Buscamos hacer el café que nos enseñaron a preparar desde siempre.</p>
+                    <p>Cada cosecha comienza con calma. Esperamos el momento exacto para cortar únicamente los frutos maduros, uno a uno, porque sabemos que el buen café empieza desde la planta.</p>
+                    <p>Después viene el trabajo artesanal: despulpar el café, lavarlo, dejar que el sol haga su parte y, finalmente, tostarlo lentamente a leña. Ese proceso es el que le da el aroma y el sabor que han acompañado a nuestra familia durante generaciones.</p>
+                    <p>Hace algunos años, una plaga golpeó gran parte del cafetal. Ver enfermar las plantas fue uno de los momentos más difíciles que hemos vivido.</p>
+                    <p>Tomamos una decisión que dolió, pero que nunca hemos lamentado: preferimos perder una cosecha completa antes que ofrecer un café que no representara lo que somos. Muchas plantas tuvieron que retirarse para proteger el resto del cafetal y comenzar de nuevo.</p>
+                    <p>Siempre hemos procurado cultivar el café de la forma más natural posible, respetando la tierra y permitiendo que cada planta siga su propio ritmo. Por eso evitamos recurrir a prácticas que pudieran comprometer la esencia de nuestro café, aunque eso implique producir menos o esperar más tiempo para volver a cosechar.</p>
+                    <p>Desde entonces entendimos que el café no solo se cultiva con trabajo, sino también con paciencia, respeto por la tierra y la convicción de hacer las cosas bien, incluso cuando eso significa empezar otra vez.</p>
+                    <p>Por eso nuestra producción es limitada. Cada cosecha depende de la naturaleza, del clima y del tiempo que cada planta necesita para dar su mejor fruto. Nunca apresuramos el proceso.</p>
+                    <p>Cuando una bolsa llega a tus manos, lleva mucho más que café. Lleva meses de dedicación, el esfuerzo de una familia y una tradición que comenzó hace generaciones en la Sierra de Otontepec.</p>
+                    <p><strong>Al final, nuestro café es el reflejo de una forma de trabajar: con paciencia, respeto por la tierra y amor por lo que hacemos.</strong></p>
+                    <p><strong>Cada taza es el resultado de todo ese camino.</strong></p>
+                    <div class="modal-divider">✦</div>
+                    <h3 style="text-align:center;color:#b39258;font-family:var(--font-serif);letter-spacing:3px;margin-bottom:25px;">
+                    PERFIL DEL CAFÉ
+                    </h3>
+                    <div class="perfil-cafe">
+                        <div class="perfil-item">
+                            <span>Acidez</span>
+                            <strong>● ● ● ○ ○</strong>
+                        </div>
+                    
+                        <div class="perfil-item">
+                            <span>Cuerpo</span>
+                            <strong>● ● ● ● ○</strong>
+                        </div>
+                    
+                        <div class="perfil-item">
+                            <span>Dulzor</span>
+                            <strong>● ● ● ○ ○</strong>
+                        </div>
+                    
+                        <div class="perfil-item">
+                            <span>Aroma</span>
+                            <strong>● ● ● ● ●</strong>
+                        </div>
+            </div>
+                        <p style="text-align:center;font-style:italic;line-height:1.8;margin-top:28px;color:#dccbb5;">
+                        Un café de acidez suave, cuerpo medio-alto, dulzor equilibrado y un aroma intenso que nace del tostado tradicional a leña.
+                        </p>
+                icon: "fa-mug-hot"
             },
             logo: { 
                 title: "Identidad del Logo", 
