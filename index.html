@@ -264,7 +264,7 @@
         .perfil-item{ display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(179,146,88,.20); }
         .perfil-item:last-child{ border-bottom:none; }
         .perfil-item span{ color:#f5f0e6; letter-spacing:1px; }
-        .perfil-item strong{ color:var(--gold); letter-spacing:3px; font-size:15px; }
+        .perfil-item strong{ color:var(--gold); letter-spacing:1px; font-size:16px; }
         
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
@@ -762,6 +762,7 @@ rio: {
                         <p style="text-align:center;font-style:italic;line-height:1.8;margin-top:28px;color:#dccbb5;">
                         Un café de acidez suave, cuerpo medio-alto, dulzor equilibrado y un aroma intenso que nace del tostado tradicional a leña.
                         </p>
+            `,
                 icon: "fa-mug-hot"
             },
             logo: { 
@@ -783,7 +784,7 @@ rio: {
                 modalTitle.innerText = data.title;
                 modalText.innerHTML = data.text;
             }
-            if(tipo === "historia"){
+            if(tipo === "historia" || tipo === "cafe"){
                 modalButton.textContent = "SEGUIR EXPLORANDO";
             }else{
                 modalButton.textContent = "SEGUIR DESCUBRIENDO";
